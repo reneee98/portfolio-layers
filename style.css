@@ -605,7 +605,7 @@ body {
   }
   .badge {
     width: 11rem;
-    height: 3.8rem;
+    height: auto;
     padding: 14px 36px;
     min-width: 7rem;
     display: flex;
@@ -696,7 +696,7 @@ body {
   
   .badge {
     padding: 6px 12px;
-    height: 36px;
+    height: auto;
     min-width: 70px;
     display: flex;
     align-items: center;
@@ -710,7 +710,7 @@ body {
   }
   
   .logo-carousel {
-    height: 50px;
+    height: auto;
   }
   
   .logo-track,
@@ -2104,5 +2104,11 @@ body.portfolio-page {
 @media (max-width: 480px) {
   .logo-fade-bottom {
     height: 16px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .nav ul {
+    padding-right: 0;
   }
 }
