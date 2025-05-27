@@ -483,13 +483,17 @@ body {
   position: relative;
   white-space: nowrap;
   will-change: transform;
+  gap: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .logo-set {
   display: flex;
   gap: 32px;
   align-items: center;
-  padding: 0 20px;
+  padding: 0;
+  margin: 0;
 }
 
 .badge:hover {
@@ -634,6 +638,9 @@ body {
   .logo-set {
     gap: 16px;
   }
+  .logo-track {
+    gap: 0;
+  }
   .badge {
     width: 8rem;
     height: 2.6rem;
@@ -648,10 +655,6 @@ body {
     height: 20px;
     width: auto;
     margin: 0;
-  }
-  
-  .logo-track {
-    gap: 30px;
   }
 }
 

@@ -42,21 +42,28 @@ const initLogoCarousel = () => {
     // Klonuj logo set
     const clone = logoSet.cloneNode(true);
     clone.classList.add('clone');
-    clone.style.marginLeft = '0';
-    clone.style.paddingLeft = '0';
-    clone.style.gap = '0';
+    
+    // Pridaj gap medzi originálom a klonom
+    const gap = parseInt(getComputedStyle(logoSet).gap);
+    clone.style.marginLeft = `${gap}px`;
+    
     track.appendChild(clone);
+
+    // Vypočítaj celkovú šírku včetně gapu
+    const logoSetWidth = logoSet.offsetWidth;
+    const totalWidth = logoSetWidth + gap;
 
     // Set initial styles
     gsap.set(track, { x: 0 });
 
     // Create the infinite scrolling animation
     gsap.to(track, {
-      x: -logoSet.offsetWidth,
+      x: -totalWidth,
       duration: 20,
       repeat: -1,
       ease: "none",
       onRepeat: () => {
+        // Namiesto resetu na 0, presunieme na pozíciu, kde je klon
         gsap.set(track, { x: 0 });
       }
     });
