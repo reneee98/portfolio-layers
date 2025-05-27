@@ -438,6 +438,15 @@ body {
 }
 
 @media (max-width: 1024px) {
+  .hero-content {
+    align-items: center;
+    text-align: center;
+  }
+  .hero-content .contact-btn {
+    margin: 24px auto 0 auto;
+    align-self: center;
+    display: inline-flex;
+  }
   .hero-text {
     margin-left: 0;
     text-align: center;
@@ -635,9 +644,10 @@ body {
   
   .hero-content .contact-btn {
     display: inline-flex;
-    margin-top: 40px;
+    margin: 40px auto 0 auto;
     padding: 16px 32px;
     font-size: 18px;
+    align-self: center;
   }
   
   .logo {
@@ -662,7 +672,7 @@ body {
   }
   .badge {
     width: 8rem;
-    height: 2.6rem;
+    height: auto;
     padding: 8px 18px;
     min-width: 5rem;
     display: flex;
@@ -719,9 +729,10 @@ body {
   }
   
   .hero-content .contact-btn {
-    margin-top: 30px;
+    margin: 30px auto 0 auto;
     padding: 14px 28px;
     font-size: 16px;
+    align-self: center;
   }
 }
 
@@ -1620,6 +1631,7 @@ body {
   }
   .hero-content .contact-btn { 
     display: inline-flex !important;
+    margin: auto;
   }
 }
 
