@@ -1,145 +1,85 @@
 // Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+// (odstránené všetky animácie)
 
 // Hero section animations
-const initHeroAnimations = () => {
-  const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-  
-  tl.from(".logo", {
-    y: -50,
-    opacity: 0,
-    duration: 1
-  })
-  .from(".nav ul li", {
-    y: -50,
-    opacity: 0,
-    stagger: 0.1,
-    duration: 0.8
-  }, "-=0.5")
-  .from(".top-bar > .contact-btn", {
-    y: -50,
-    opacity: 0,
-    duration: 0.8
-  }, "-=0.5")
-  .from(".hero-content > .contact-btn", {
-    y: -50,
-    opacity: 0,
-    duration: 0.8
-  }, "-=0.5")
-  .from(".left h1", {
-    y: 100,
-    opacity: 0,
-    duration: 1
-  }, "-=0.3")
-  .from(".left h2", {
-    y: 100,
-    opacity: 0,
-    duration: 1
-  }, "-=0.7")
-  .from(".hero-text", {
-    y: 50,
-    opacity: 0,
-    duration: 1
-  }, "-=0.5");
-};
-
-// Portfolio section animations
-const initPortfolioAnimations = () => {
-  // Animate section title
-  gsap.from(".portfolio .section-title", {
-    scrollTrigger: {
-      trigger: ".portfolio",
-      start: "top 80%",
-      toggleActions: "play none none reverse"
-    },
-    y: 100,
-    opacity: 0,
-    duration: 1,
-    ease: "power3.out"
-  });
-
-  // Animate portfolio cards
-  gsap.from(".portfolio-card", {
-    scrollTrigger: {
-      trigger: ".portfolio-grid",
-      start: "top 80%",
-      toggleActions: "play none none reverse"
-    },
-    y: 100,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power3.out"
-  });
-};
-
-// Expertise section animations
-const initExpertiseAnimations = () => {
-  // Animate expertise tag
-  gsap.from(".expertise .tag", {
-    scrollTrigger: {
-      trigger: ".expertise",
-      start: "top 80%",
-      toggleActions: "play none none reverse"
-    },
-    x: -50,
-    opacity: 0,
-    duration: 0.8,
-    ease: "power3.out"
-  });
-
-  // Animate section title
-  gsap.from(".expertise .section-title", {
-    scrollTrigger: {
-      trigger: ".expertise",
-      start: "top 80%",
-      toggleActions: "play none none reverse"
-    },
-    y: 100,
-    opacity: 0,
-    duration: 1,
-    ease: "power3.out"
-  });
-
-  // Animate expertise items
-  gsap.from(".expertise-item", {
-    scrollTrigger: {
-      trigger: ".expertise-items",
-      start: "top 80%",
-      toggleActions: "play none none reverse"
-    },
-    y: 50,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power3.out"
-  });
-};
-
-// Smooth logo carousel animation using GSAP
+const initHeroAnimations = () => {};
+const initPortfolioAnimations = () => {};
+const initExpertiseAnimations = () => {};
 const initLogoCarousel = () => {
   const track = document.getElementById("logoTrack");
   if (!track) return;
-  
-  const originalSet = track.querySelector(".logo-set");
-  if (!originalSet) return;
-  
-  // Clone logo sets for infinite scroll
-  const clone1 = originalSet.cloneNode(true);
-  const clone2 = originalSet.cloneNode(true);
-  track.appendChild(clone1);
-  track.appendChild(clone2);
 
-  const fullSetWidth = originalSet.offsetWidth;
-  
-  // Create infinite scroll animation
-  gsap.to(track, {
-    x: -fullSetWidth,
-    duration: 20,
-    repeat: -1,
-    ease: "none",
-    paused: false
-  });
+  const logoSet = track.querySelector(".logo-set");
+  if (!logoSet) return;
+
+  // Počkaj na načítanie všetkých obrázkov v badge
+  const images = Array.from(logoSet.querySelectorAll('img'));
+  let loaded = 0;
+  const onImgLoad = () => {
+    loaded++;
+    if (loaded === images.length) {
+      startCarousel();
+    }
+  };
+  if (images.length === 0) {
+    startCarousel();
+  } else {
+    images.forEach(img => {
+      if (img.complete) {
+        onImgLoad();
+      } else {
+        img.addEventListener('load', onImgLoad);
+        img.addEventListener('error', onImgLoad);
+      }
+    });
+  }
+
+  function startCarousel() {
+    // Odstráň predchádzajúce klony ak existujú
+    const clones = track.querySelectorAll('.logo-set.clone');
+    clones.forEach(clone => clone.remove());
+
+    // Klonuj logo set
+    const clone = logoSet.cloneNode(true);
+    clone.classList.add('clone');
+    clone.style.marginLeft = '0';
+    clone.style.paddingLeft = '0';
+    clone.style.gap = '0';
+    track.appendChild(clone);
+
+    // Set initial styles
+    gsap.set(track, { x: 0 });
+
+    // Create the infinite scrolling animation
+    gsap.to(track, {
+      x: -logoSet.offsetWidth,
+      duration: 20,
+      repeat: -1,
+      ease: "none",
+      onRepeat: () => {
+        gsap.set(track, { x: 0 });
+      }
+    });
+
+    // Add hover effect to badges
+    const badges = track.querySelectorAll(".badge");
+    badges.forEach(badge => {
+      badge.addEventListener("mouseenter", () => {
+        gsap.to(badge, {
+          scale: 1.1,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
+      badge.addEventListener("mouseleave", () => {
+        gsap.to(badge, {
+          scale: 1,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      });
+    });
+  }
 };
 
 // Mobile menu functionality
@@ -587,4 +527,10 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Trigger a resize event to initialize responsive behaviors
   window.dispatchEvent(new Event('resize'));
+
+  // Odstránenie burger menu z DOM na desktope a tablete
+  if (window.innerWidth > 768) {
+    const burger = document.querySelector('.burger');
+    if (burger) burger.remove();
+  }
 });
