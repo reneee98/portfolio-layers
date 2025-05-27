@@ -9,7 +9,7 @@ const initLogoCarousel = () => {
   const track = document.getElementById("logoTrack");
   if (!track) return;
 
-  const logoSet = track.querySelector(".logo-set");
+  let logoSet = track.querySelector(".logo-set");
   if (!logoSet) return;
 
   // Počkaj na načítanie všetkých obrázkov v badge
@@ -18,11 +18,11 @@ const initLogoCarousel = () => {
   const onImgLoad = () => {
     loaded++;
     if (loaded === images.length) {
-      startCarousel();
+      startInfiniteStrip();
     }
   };
   if (images.length === 0) {
-    startCarousel();
+    startInfiniteStrip();
   } else {
     images.forEach(img => {
       if (img.complete) {
@@ -34,41 +34,41 @@ const initLogoCarousel = () => {
     });
   }
 
-  function startCarousel() {
-    // Odstráň predchádzajúce klony ak existujú
+  function startInfiniteStrip() {
+    // Odstráň všetky predchádzajúce klony
     const clones = track.querySelectorAll('.logo-set.clone');
     clones.forEach(clone => clone.remove());
 
-    // Klonuj logo set
-    const clone = logoSet.cloneNode(true);
-    clone.classList.add('clone');
-    
-    // Pridaj gap medzi originálom a klonom
-    const gap = parseInt(getComputedStyle(logoSet).gap);
-    clone.style.marginLeft = `${gap}px`;
-    
-    track.appendChild(clone);
-
-    // Vypočítaj celkovú šírku včetně gapu
+    // Zisti šírku viewportu a logo-setu
+    const viewportWidth = track.offsetWidth;
     const logoSetWidth = logoSet.offsetWidth;
-    const totalWidth = logoSetWidth + gap;
+
+    // Vypočítaj, koľko kópií treba na pokrytie aspoň 2,5x viewportu
+    let minTotalWidth = viewportWidth * 2.5;
+    let numClones = Math.ceil(minTotalWidth / logoSetWidth);
+
+    // Pridaj potrebný počet klonov
+    for (let i = 0; i < numClones; i++) {
+      let clone = logoSet.cloneNode(true);
+      clone.classList.add('clone');
+      track.appendChild(clone);
+    }
 
     // Set initial styles
     gsap.set(track, { x: 0 });
 
-    // Create the infinite scrolling animation
+    // Animuj o šírku jedného logo-setu
     gsap.to(track, {
-      x: -totalWidth,
+      x: -logoSetWidth,
       duration: 20,
       repeat: -1,
       ease: "none",
-      onRepeat: () => {
-        // Namiesto resetu na 0, presunieme na pozíciu, kde je klon
-        gsap.set(track, { x: 0 });
+      modifiers: {
+        x: gsap.utils.unitize(x => parseFloat(x) % -logoSetWidth)
       }
     });
 
-    // Add hover effect to badges
+    // Hover efekt na badge
     const badges = track.querySelectorAll(".badge");
     badges.forEach(badge => {
       badge.addEventListener("mouseenter", () => {
