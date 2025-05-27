@@ -42,29 +42,33 @@ const initLogoCarousel = () => {
     // Zisti šírku viewportu a logo-setu
     const viewportWidth = track.offsetWidth;
     const logoSetWidth = logoSet.offsetWidth;
+    const gap = parseInt(getComputedStyle(logoSet).gap) || 0;
 
     // Vypočítaj, koľko kópií treba na pokrytie aspoň 2,5x viewportu
     let minTotalWidth = viewportWidth * 2.5;
     let numClones = Math.ceil(minTotalWidth / logoSetWidth);
 
-    // Pridaj potrebný počet klonov
+    // Pridaj potrebný počet klonov a nastav gap medzi setmi
     for (let i = 0; i < numClones; i++) {
       let clone = logoSet.cloneNode(true);
       clone.classList.add('clone');
+      clone.style.marginLeft = gap + 'px';
       track.appendChild(clone);
     }
+    // Prvý (originálny) logo-set nemá margin-left
+    logoSet.style.marginLeft = '0px';
 
     // Set initial styles
     gsap.set(track, { x: 0 });
 
-    // Animuj o šírku jedného logo-setu
+    // Animuj o šírku jedného logo-setu + gap
     gsap.to(track, {
-      x: -logoSetWidth,
+      x: -(logoSetWidth + gap),
       duration: 20,
       repeat: -1,
       ease: "none",
       modifiers: {
-        x: gsap.utils.unitize(x => parseFloat(x) % -logoSetWidth)
+        x: gsap.utils.unitize(x => parseFloat(x) % -(logoSetWidth + gap))
       }
     });
 
