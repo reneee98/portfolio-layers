@@ -1988,3 +1988,17 @@ body.portfolio-page {
     font-size: 1.3rem;
   }
 }
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  font-size: 2rem;
+  vertical-align: middle;
+  transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.expertise-item.expanded .material-symbols-outlined {
+  transform: rotate(90deg);
+}
