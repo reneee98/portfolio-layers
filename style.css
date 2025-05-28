@@ -763,6 +763,7 @@ body {
   padding: clamp(60px, 10vh, 120px) 0;
   z-index: 1;
   overflow: hidden;
+  color: #222;
 }
 
 .portfolio .container {
@@ -802,15 +803,89 @@ body {
   border-radius: 16px;
   overflow: hidden;
   background: var(--background-light);
-  aspect-ratio: 1 / 1;
-  height: auto;
+  aspect-ratio: 3/2;
   min-width: 0;
-  transform: translateY(0);
-  transition: transform 0.3s var(--ease-out);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  transition: box-shadow 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  flex: 1 1 auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(.22,1,.36,1);
+}
+
+.portfolio-card:hover .card-image img {
+  transform: scale(1.04);
+}
+
+.project-meta {
+  padding: 20px 0;
+  text-align: left;
+}
+
+.project-client {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.project-desc {
+  font-size: 18px;
+  color: #222;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .portfolio-card:hover {
-  transform: translateY(-10px);
+  box-shadow: 0 8px 32px 0 rgba(175,177,183,0.18), 0 2px 16px rgba(0,0,0,0.08);
+  transform: translateY(-8px) scale(1.02);
+}
+
+.portfolio-card:hover .card-image img {
+  filter: brightness(0.7) grayscale(0.1);
+  transform: scale(1.04);
+}
+
+.portfolio-card:hover .card-overlay {
+  bottom: 0;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.card-overlay span {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  opacity: 1;
+  transform: translateY(0);
+  transition: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-overlay .icon {
+  font-size: 2rem;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .portfolio-card:nth-child(2) {
@@ -831,21 +906,6 @@ body {
 
 .portfolio-card:nth-child(6) {
   grid-column: span 1;
-}
-
-.card-image {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s var(--ease-out);
-  transform: scale(1);
 }
 
 .card-overlay {
@@ -1011,13 +1071,13 @@ body {
   }
   
   .portfolio-card {
-    height: 300px;
+    aspect-ratio: 3/2;
   }
 }
 
 @media (max-width: 480px) {
   .portfolio-card {
-    height: 250px;
+    aspect-ratio: 3/2;
   }
   
   .card-overlay {
