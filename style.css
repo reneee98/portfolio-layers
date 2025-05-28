@@ -1178,13 +1178,14 @@ body {
   transform: rotate(90deg);
 }
 .expertise-content {
-  padding: 0 0 24px 0;
+  padding: 0 0 0 0;
   height: 0;
   overflow: hidden;
   transition: height 0.3s cubic-bezier(0.33, 1, 0.68, 1);
 }
 .expertise-item.expanded .expertise-content {
   height: auto;
+  padding: 0 0 24px 0;
 }
 .expertise-details {
   padding: 0;
@@ -1200,6 +1201,7 @@ body {
   font-size: 2rem;
   color: #000000;
   margin: 0;
+  line-height: 1.2;
 }
 @media (max-width: 900px) {
   .expertise .container {
