@@ -560,6 +560,185 @@ const initContactAnimations = () => {
   };
 };
 
+// === Global GSAP Entrance Animations ===
+const initGlobalEntranceAnimations = () => {
+  // Animate header/top-bar/nav
+  gsap.from('.top-bar', {
+    y: -60,
+    opacity: 0,
+    duration: 1,
+    ease: 'power3.out',
+  });
+  
+  // Animate nav items and contact button together
+  const navItems = gsap.utils.toArray('.nav ul li');
+  const contactBtn = document.querySelector('.top-bar .contact-btn');
+  
+  // Only animate contactBtn if it's visible (not display: none)
+  if (contactBtn && window.getComputedStyle(contactBtn).display !== 'none') {
+    gsap.set(contactBtn, { display: 'inline-flex', opacity: 0, y: -30 });
+    const navTimeline = gsap.timeline();
+    navTimeline
+      .from(navItems, {
+        y: -30,
+        opacity: 1,
+        duration: 0.7,
+        stagger: 0.08,
+        ease: 'power3.out'
+      })
+      .to(contactBtn, {
+        y: 0,
+        opacity: 1,
+        duration: 0.7,
+        ease: 'power3.out'
+      }, "<"); // Animate contactBtn at the same time as navItems
+  } else {
+    // Animate only nav items if contactBtn is hidden
+    gsap.from(navItems, {
+      y: -30,
+      opacity: 1,
+      duration: 0.7,
+      stagger: 0.08,
+      ease: 'power3.out'
+    });
+  }
+
+  // Animate hero content
+  gsap.from('.hero-content .left h1', {
+    y: 60,
+    opacity: 0,
+    duration: 1,
+    delay: 0.2,
+    ease: 'power3.out',
+  });
+  gsap.from('.hero-content .left .different-hero', {
+    y: 60,
+    opacity: 0,
+    duration: 1,
+    delay: 0.4,
+    ease: 'power3.out',
+  });
+  gsap.from('.hero-content .hero-text', {
+    y: 60,
+    opacity: 0,
+    duration: 1,
+    delay: 0.6,
+    ease: 'power3.out',
+  });
+  gsap.from('.hero-content .contact-btn', {
+    y: 60,
+    opacity: 0,
+    duration: 1,
+    delay: 0.8,
+    ease: 'power3.out',
+  });
+
+  // Animate logo carousel
+  gsap.from('.logo-carousel', {
+    y: 40,
+    opacity: 0,
+    duration: 1,
+    delay: 1,
+    ease: 'power3.out',
+  });
+
+  // Portfolio section entrance
+  gsap.from('.portfolio', {
+    scrollTrigger: {
+      trigger: '.portfolio',
+      start: 'top 80%',
+    },
+    y: 80,
+    opacity: 0,
+    duration: 1,
+    ease: 'power3.out',
+  });
+  gsap.from('.portfolio .section-title', {
+    scrollTrigger: {
+      trigger: '.portfolio',
+      start: 'top 80%',
+    },
+    y: 40,
+    opacity: 0,
+    duration: 0.8,
+    delay: 0.2,
+    ease: 'power3.out',
+  });
+  gsap.from('.portfolio-card', {
+    scrollTrigger: {
+      trigger: '.portfolio',
+      start: 'top 80%',
+    },
+    y: 40,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.1,
+    delay: 0.3,
+    ease: 'power3.out',
+  });
+
+  // Expertise section entrance
+  gsap.from('.expertise', {
+    scrollTrigger: {
+      trigger: '.expertise',
+      start: 'top 80%',
+    },
+    y: 80,
+    opacity: 0,
+    duration: 1,
+    ease: 'power3.out',
+  });
+  gsap.from('.expertise .section-title', {
+    scrollTrigger: {
+      trigger: '.expertise',
+      start: 'top 80%',
+    },
+    y: 40,
+    opacity: 0,
+    duration: 0.8,
+    delay: 0.2,
+    ease: 'power3.out',
+  });
+  gsap.from('.expertise-item', {
+    scrollTrigger: {
+      trigger: '.expertise',
+      start: 'top 80%',
+    },
+    y: 40,
+    opacity: 0,
+    duration: 0.7,
+    stagger: 0.1,
+    delay: 0.3,
+    ease: 'power3.out',
+  });
+
+  // Animate get-in-touch section if present
+  if (document.querySelector('.get-in-touch')) {
+    gsap.from('.get-in-touch-title', {
+      scrollTrigger: {
+        trigger: '.get-in-touch',
+        start: 'top 80%',
+      },
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      ease: 'power3.out',
+    });
+    gsap.from('.get-in-touch-content > *', {
+      scrollTrigger: {
+        trigger: '.get-in-touch',
+        start: 'top 80%',
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.7,
+      stagger: 0.1,
+      delay: 0.2,
+      ease: 'power3.out',
+    });
+  }
+};
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   initHeroAnimations();
@@ -570,6 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPortfolioAnimations();
   initExpertiseAnimations();
   initContactAnimations();
+  initGlobalEntranceAnimations();
   
   // Fix for the contact section title animation
   const contactTitle = document.getElementById('contactTitle');

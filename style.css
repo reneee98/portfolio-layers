@@ -62,7 +62,7 @@ html {
 
 body {
   font-family: 'Safiro', sans-serif;
-  background: linear-gradient(to bottom, var(--background-dark), black);
+  background: white;
   color: var(--primary-color);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
