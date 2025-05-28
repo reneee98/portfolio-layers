@@ -742,6 +742,10 @@ body {
     font-size: 16px;
     align-self: center;
   }
+  
+  .logo-set.clone {
+    margin-left: 0 !important;
+  }
 }
 
 /* Container styles */
