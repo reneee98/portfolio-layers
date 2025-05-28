@@ -284,35 +284,24 @@ const initExpertiseCards = () => {
   const expertiseItems = document.querySelectorAll('.expertise-item');
   
   expertiseItems.forEach(item => {
-    const viewButton = item.querySelector('.view-button');
-    const content = item.querySelector('.expertise-content');
     const headerRow = item.querySelector('.expertise-header-row');
+    const content = item.querySelector('.expertise-content');
     
-    if (!content || !viewButton) return; // Safety check
+    if (!content || !headerRow) return; // Safety check
     
     // Set initial states
     if (!item.classList.contains('featured')) {
-      content.style.display = 'none';
       gsap.set(content, { height: 0 });
     } else {
       // Pre-expand featured item
       item.classList.add('expanded');
-      content.style.display = 'block';
       gsap.set(content, { height: 'auto' });
     }
     
-    // Toggle expertise card
-    if (headerRow) {
-      headerRow.addEventListener('click', function(e) {
-        toggleExpertiseCard(e, item, content, viewButton);
-      });
-    }
-    
-    if (viewButton) {
-      viewButton.addEventListener('click', function(e) {
-        toggleExpertiseCard(e, item, content, viewButton);
-      });
-    }
+    // Toggle on header row click (not just arrow)
+    headerRow.addEventListener('click', function(e) {
+      toggleExpertiseCard(e, item, content, headerRow);
+    });
   });
 };
 
@@ -320,6 +309,10 @@ const initExpertiseCards = () => {
 function toggleExpertiseCard(e, item, content, viewButton) {
   e.preventDefault();
   e.stopPropagation();
+  
+  // Prevent toggle if animating
+  if (item.dataset.animating === 'true') return;
+  item.dataset.animating = 'true';
   
   const isExpanded = item.classList.contains('expanded');
   
@@ -332,16 +325,13 @@ function toggleExpertiseCard(e, item, content, viewButton) {
       otherItem.classList.remove('expanded');
       
       if (otherContent) {
-        // First get the height for animation
-        const height = otherContent.offsetHeight;
-        
-        // Then animate and hide
+        gsap.killTweensOf(otherContent);
         gsap.to(otherContent, {
           height: 0,
           duration: 0.5,
           ease: "power3.inOut",
           onComplete: () => {
-            otherContent.style.display = 'none';
+            otherItem.dataset.animating = 'false';
           }
         });
       }
@@ -351,28 +341,30 @@ function toggleExpertiseCard(e, item, content, viewButton) {
   // Toggle current item
   if (isExpanded) {
     item.classList.remove('expanded');
-    
+    gsap.killTweensOf(content);
     gsap.to(content, {
       height: 0,
       duration: 0.5,
       ease: "power3.inOut",
       onComplete: () => {
-        content.style.display = 'none';
+        item.dataset.animating = 'false';
       }
     });
   } else {
     item.classList.add('expanded');
-    content.style.display = 'block';
-    
-    // Get natural height
+    gsap.killTweensOf(content);
     gsap.set(content, { height: 'auto' });
     const height = content.offsetHeight;
-    
-    // Animate from 0 to height
-    gsap.fromTo(content,
-      { height: 0 },
-      { height: height, duration: 0.5, ease: "power3.inOut" }
-    );
+    gsap.set(content, { height: 0 });
+    gsap.to(content, {
+      height: height,
+      duration: 0.5,
+      ease: "power3.inOut",
+      onComplete: () => {
+        gsap.set(content, { height: 'auto' });
+        item.dataset.animating = 'false';
+      }
+    });
   }
 }
 

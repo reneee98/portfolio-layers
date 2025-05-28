@@ -795,6 +795,7 @@ body {
   gap: 40px;
   margin-bottom: 60px;
   width: 100%;
+  margin-top: 4rem;
   margin-left: auto;
   margin-right: auto;
 }
@@ -1178,17 +1179,26 @@ body {
 }
 .expertise-content {
   padding: 0 0 24px 0;
-  display: none;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s cubic-bezier(0.33, 1, 0.68, 1);
 }
 .expertise-item.expanded .expertise-content {
-  display: block;
+  height: auto;
 }
 .expertise-details {
   padding: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.expertise-item.expanded .expertise-details {
+  opacity: 1;
+  transform: translateY(0);
 }
 .expertise-details p {
   font-size: 2rem;
-  color: #444;
+  color: #000000;
   margin: 0;
 }
 @media (max-width: 900px) {
