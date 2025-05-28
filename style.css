@@ -374,7 +374,7 @@ body {
 
 .hero-text {
   margin-top: 24px;
-  font-size: clamp(16px, 2vw, 32px);
+  font-size: clamp(1.125rem, 2.5vw, 3.5rem);
   line-height: 1.4;
   max-width: 90%;
   margin-left: 0;
@@ -421,10 +421,10 @@ body {
   }
   .left h1,
   .left h2 {
-    font-size: clamp(60px, 10vw, 180px);
+    font-size: clamp(60px, 10vw, 16rem);
   }
   .hero-text {
-    font-size: clamp(22px, 2vw, 40px);
+    font-size: clamp(1.5rem, 2.5vw, 4rem);
     margin-left: 40rem;
   }
   .logo-carousel {
@@ -775,7 +775,7 @@ body {
 }
 
 .section-title {
-  font-size: clamp(32px, 5vw, 56px);
+  font-size: clamp(32px, 5vw, 5rem);
   font-weight: 700;
   margin-bottom: clamp(40px, 6vh, 80px);
   line-height: 1.2;
@@ -1062,6 +1062,10 @@ body {
 }
 
 @media (max-width: 480px) {
+  .portfolio {
+    padding: 20px 0;
+  }
+  
   .portfolio-card {
     aspect-ratio: 3/2;
   }
@@ -1977,4 +1981,10 @@ body.portfolio-page {
   border: 1.5px solid #111;
   letter-spacing: 0.08em;
   box-shadow: none;
+}
+
+@media (max-width: 480px) {
+  .expertise-details p {
+    font-size: 1.3rem;
+  }
 }
