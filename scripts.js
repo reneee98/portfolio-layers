@@ -299,10 +299,6 @@ const initExpertiseCards = () => {
       item.classList.add('expanded');
       content.style.display = 'block';
       gsap.set(content, { height: 'auto' });
-      viewButton.innerHTML = `View less
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 5L21 12M21 12L14 19M21 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>`;
     }
     
     // Toggle expertise card
@@ -349,13 +345,6 @@ function toggleExpertiseCard(e, item, content, viewButton) {
           }
         });
       }
-      
-      if (otherViewButton) {
-        otherViewButton.innerHTML = `View more
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14 5L21 12M21 12L14 19M21 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>`;
-      }
     }
   });
   
@@ -371,13 +360,6 @@ function toggleExpertiseCard(e, item, content, viewButton) {
         content.style.display = 'none';
       }
     });
-    
-    if (viewButton) {
-      viewButton.innerHTML = `View more
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 5L21 12M21 12L14 19M21 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>`;
-    }
   } else {
     item.classList.add('expanded');
     content.style.display = 'block';
@@ -391,13 +373,6 @@ function toggleExpertiseCard(e, item, content, viewButton) {
       { height: 0 },
       { height: height, duration: 0.5, ease: "power3.inOut" }
     );
-    
-    if (viewButton) {
-      viewButton.innerHTML = `View less
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 5L21 12M21 12L14 19M21 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>`;
-    }
   }
 }
 
