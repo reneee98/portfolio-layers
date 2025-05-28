@@ -2,7 +2,120 @@
 // (odstránené všetky animácie)
 
 // Hero section animations
-const initHeroAnimations = () => {};
+const initHeroAnimations = () => {
+  const heroDifferent = document.querySelector('.different-hero');
+  if (!heroDifferent) return;
+
+  // Only run on desktop
+  if (window.innerWidth < 1024) return;
+
+  // Set up the glitch text
+  let text = heroDifferent.textContent.trim();
+  if (!text) {
+    text = 'GLITCH DEBUG';
+    heroDifferent.textContent = text;
+  }
+  heroDifferent.innerHTML = '';
+  heroDifferent.textContent = text;
+  heroDifferent.classList.add('glitch-text');
+  heroDifferent.setAttribute('data-text', text);
+  heroDifferent.style.color = '#AFB1B7';
+
+  // Add CSS for CodePen-style glitch effect
+  const style = document.createElement('style');
+  style.textContent = `
+    .glitch-text {
+      position: relative;
+      color: #AFB1B7;
+      font-family: inherit;
+      font-weight: bold;
+      font-size: inherit;
+      text-transform: uppercase;
+      letter-spacing: inherit;
+      display: inline-block;
+      line-height: 1.1;
+      overflow: visible;
+    }
+    .glitch-text::before,
+    .glitch-text::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0; top: 0;
+      width: 100%;
+      overflow: hidden;
+      color: #AFB1B7;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .glitch-text.glitch-active::before {
+      opacity: 1;
+      animation: glitchTop 0.35s linear;
+    }
+    .glitch-text.glitch-active::after {
+      opacity: 1;
+      animation: glitchBot 0.35s linear;
+    }
+    .glitch-text.glitch-hover::before {
+      opacity: 1;
+      animation: glitchTopHover 0.4s linear;
+    }
+    .glitch-text.glitch-hover::after {
+      opacity: 1;
+      animation: glitchBotHover 0.4s linear;
+    }
+    @keyframes glitchTop {
+      0% { clip-path: inset(0 0 60% 0); transform: translate(-2px, -1px); }
+      20% { clip-path: inset(0 0 60% 0); transform: translate(2px, 1px); }
+      40% { clip-path: inset(0 0 60% 0); transform: translate(-2px, 1px); }
+      60% { clip-path: inset(0 0 60% 0); transform: translate(2px, -1px); }
+      80% { clip-path: inset(0 0 60% 0); transform: translate(-2px, -1px); }
+      100% { clip-path: inset(0 0 60% 0); transform: translate(0, 0); }
+    }
+    @keyframes glitchBot {
+      0% { clip-path: inset(60% 0 0 0); transform: translate(2px, 1px); }
+      20% { clip-path: inset(60% 0 0 0); transform: translate(-2px, -1px); }
+      40% { clip-path: inset(60% 0 0 0); transform: translate(2px, -1px); }
+      60% { clip-path: inset(60% 0 0 0); transform: translate(-2px, 1px); }
+      80% { clip-path: inset(60% 0 0 0); transform: translate(2px, 1px); }
+      100% { clip-path: inset(60% 0 0 0); transform: translate(0, 0); }
+    }
+    @keyframes glitchTopHover {
+      0% { clip-path: inset(0 0 60% 0); transform: translate(-4px, -2px); }
+      20% { clip-path: inset(0 0 60% 0); transform: translate(4px, 2px); }
+      40% { clip-path: inset(0 0 60% 0); transform: translate(-4px, 2px); }
+      60% { clip-path: inset(0 0 60% 0); transform: translate(4px, -2px); }
+      80% { clip-path: inset(0 0 60% 0); transform: translate(-4px, -2px); }
+      100% { clip-path: inset(0 0 60% 0); transform: translate(0, 0); }
+    }
+    @keyframes glitchBotHover {
+      0% { clip-path: inset(60% 0 0 0); transform: translate(4px, 2px); }
+      20% { clip-path: inset(60% 0 0 0); transform: translate(-4px, -2px); }
+      40% { clip-path: inset(60% 0 0 0); transform: translate(4px, -2px); }
+      60% { clip-path: inset(60% 0 0 0); transform: translate(-4px, 2px); }
+      80% { clip-path: inset(60% 0 0 0); transform: translate(4px, 2px); }
+      100% { clip-path: inset(60% 0 0 0); transform: translate(0, 0); }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Glitch trigger every 5 seconds
+  function triggerGlitch() {
+    heroDifferent.classList.add('glitch-active');
+    setTimeout(() => {
+      heroDifferent.classList.remove('glitch-active');
+    }, 400); // glitch visible for 0.4s
+  }
+  triggerGlitch(); // initial
+  setInterval(triggerGlitch, 5000);
+
+  // Strong glitch on hover
+  heroDifferent.addEventListener('mouseenter', () => {
+    heroDifferent.classList.add('glitch-hover');
+  });
+  heroDifferent.addEventListener('mouseleave', () => {
+    heroDifferent.classList.remove('glitch-hover');
+  });
+};
 const initPortfolioAnimations = () => {};
 const initExpertiseAnimations = () => {};
 const initLogoCarousel = () => {
