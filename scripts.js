@@ -1,6 +1,32 @@
 // Register GSAP plugins
 // (odstránené všetky animácie)
 
+// Function to randomly select and set background video
+const initRandomVideo = () => {
+  const videos = ['video-layers.mp4', 'video2-layers.mp4'];
+  const randomVideo = videos[Math.floor(Math.random() * videos.length)];
+  const videoElements = document.querySelectorAll('.bg-video');
+  
+  console.log('Initializing random video:', randomVideo);
+  console.log('Found video elements:', videoElements.length);
+  
+  videoElements.forEach(video => {
+    const source = video.querySelector('source');
+    if (source) {
+      source.src = randomVideo;
+      // Force the video element to reset and load the new source
+      video.pause();
+      video.currentTime = 0;
+      video.load();
+      
+      // Add event listener to ensure video starts playing after load
+      video.onloadeddata = () => {
+        video.play();
+      };
+    }
+  });
+};
+
 // Hero section animations
 const initHeroAnimations = () => {
   const heroDifferent = document.querySelector('.different-hero');
@@ -494,6 +520,7 @@ const initGlobalEntranceAnimations = () => {
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+  initRandomVideo();
   initHeroAnimations();
   initLogoCarousel();
   initMobileMenu();
@@ -559,6 +586,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initContactGlitch();
+});
+
+// Also initialize random video on window load to ensure all resources are available
+window.addEventListener('load', () => {
+  initRandomVideo();
 });
 
 const initContactGlitch = () => {
