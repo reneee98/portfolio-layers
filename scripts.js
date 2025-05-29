@@ -6,115 +6,24 @@ const initHeroAnimations = () => {
   const heroDifferent = document.querySelector('.different-hero');
   if (!heroDifferent) return;
 
-  // Only run on desktop
-  if (window.innerWidth < 1024) return;
-
   // Set up the glitch text
   let text = heroDifferent.textContent.trim();
   if (!text) {
-    text = 'GLITCH DEBUG';
+    text = 'DIFFERENT';
     heroDifferent.textContent = text;
   }
-  heroDifferent.innerHTML = '';
-  heroDifferent.textContent = text;
-  heroDifferent.classList.add('glitch-text');
   heroDifferent.setAttribute('data-text', text);
-  heroDifferent.style.color = '#AFB1B7';
-
-  // Add CSS for CodePen-style glitch effect
-  const style = document.createElement('style');
-  style.textContent = `
-    .glitch-text {
-      position: relative;
-      color: #AFB1B7;
-      font-family: inherit;
-      font-weight: bold;
-      font-size: inherit;
-      text-transform: uppercase;
-      letter-spacing: inherit;
-      display: inline-block;
-      line-height: 1.1;
-      overflow: visible;
-    }
-    .glitch-text::before,
-    .glitch-text::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0; top: 0;
-      width: 100%;
-      overflow: hidden;
-      color: #AFB1B7;
-      opacity: 0;
-      pointer-events: none;
-    }
-    .glitch-text.glitch-active::before {
-      opacity: 1;
-      animation: glitchTop 0.35s linear;
-    }
-    .glitch-text.glitch-active::after {
-      opacity: 1;
-      animation: glitchBot 0.35s linear;
-    }
-    .glitch-text.glitch-hover::before {
-      opacity: 1;
-      animation: glitchTopHover 0.4s linear;
-    }
-    .glitch-text.glitch-hover::after {
-      opacity: 1;
-      animation: glitchBotHover 0.4s linear;
-    }
-    @keyframes glitchTop {
-      0% { clip-path: inset(0 0 60% 0); transform: translate(-2px, -1px); }
-      20% { clip-path: inset(0 0 60% 0); transform: translate(2px, 1px); }
-      40% { clip-path: inset(0 0 60% 0); transform: translate(-2px, 1px); }
-      60% { clip-path: inset(0 0 60% 0); transform: translate(2px, -1px); }
-      80% { clip-path: inset(0 0 60% 0); transform: translate(-2px, -1px); }
-      100% { clip-path: inset(0 0 60% 0); transform: translate(0, 0); }
-    }
-    @keyframes glitchBot {
-      0% { clip-path: inset(60% 0 0 0); transform: translate(2px, 1px); }
-      20% { clip-path: inset(60% 0 0 0); transform: translate(-2px, -1px); }
-      40% { clip-path: inset(60% 0 0 0); transform: translate(2px, -1px); }
-      60% { clip-path: inset(60% 0 0 0); transform: translate(-2px, 1px); }
-      80% { clip-path: inset(60% 0 0 0); transform: translate(2px, 1px); }
-      100% { clip-path: inset(60% 0 0 0); transform: translate(0, 0); }
-    }
-    @keyframes glitchTopHover {
-      0% { clip-path: inset(0 0 60% 0); transform: translate(-4px, -2px); }
-      20% { clip-path: inset(0 0 60% 0); transform: translate(4px, 2px); }
-      40% { clip-path: inset(0 0 60% 0); transform: translate(-4px, 2px); }
-      60% { clip-path: inset(0 0 60% 0); transform: translate(4px, -2px); }
-      80% { clip-path: inset(0 0 60% 0); transform: translate(-4px, -2px); }
-      100% { clip-path: inset(0 0 60% 0); transform: translate(0, 0); }
-    }
-    @keyframes glitchBotHover {
-      0% { clip-path: inset(60% 0 0 0); transform: translate(4px, 2px); }
-      20% { clip-path: inset(60% 0 0 0); transform: translate(-4px, -2px); }
-      40% { clip-path: inset(60% 0 0 0); transform: translate(4px, -2px); }
-      60% { clip-path: inset(60% 0 0 0); transform: translate(-4px, 2px); }
-      80% { clip-path: inset(60% 0 0 0); transform: translate(4px, 2px); }
-      100% { clip-path: inset(60% 0 0 0); transform: translate(0, 0); }
-    }
-  `;
-  document.head.appendChild(style);
 
   // Glitch trigger every 5 seconds
   function triggerGlitch() {
     heroDifferent.classList.add('glitch-active');
     setTimeout(() => {
       heroDifferent.classList.remove('glitch-active');
-    }, 400); // glitch visible for 0.4s
+    }, 350); // glitch visible for 0.35s
   }
-  triggerGlitch(); // initial
-  setInterval(triggerGlitch, 5000);
-
-  // Strong glitch on hover
-  heroDifferent.addEventListener('mouseenter', () => {
-    heroDifferent.classList.add('glitch-hover');
-  });
-  heroDifferent.addEventListener('mouseleave', () => {
-    heroDifferent.classList.remove('glitch-hover');
-  });
+  
+  triggerGlitch(); // initial trigger
+  setInterval(triggerGlitch, 5000); // trigger every 5 seconds
 };
 const initPortfolioAnimations = () => {};
 const initExpertiseAnimations = () => {};
@@ -370,8 +279,31 @@ function toggleExpertiseCard(e, item, content, viewButton) {
 
 // Contact section animations
 const initContactAnimations = () => {
-  // Create timeline for initial animations
-  const tl = gsap.timeline({
+  // Animate the whole contact title with scale and fade-in
+  gsap.fromTo(
+    ".contact-title",
+    { opacity: 0, scale: 0.92 },
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".contact",
+        start: "top 80%",
+        end: "bottom top",
+        toggleActions: "play none none reverse"
+      }
+    }
+  );
+
+  // Animate contact info and logo-footer as before
+  gsap.from([".logo-footer", ".contact-info"], {
+    y: 50,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.1,
+    ease: "power3.out",
     scrollTrigger: {
       trigger: ".contact",
       start: "top 80%",
@@ -379,185 +311,6 @@ const initContactAnimations = () => {
       toggleActions: "play none none reverse"
     }
   });
-
-  // Initial animations
-  tl.from(".contact-title", {
-    y: 100,
-    opacity: 0,
-    duration: 1,
-    ease: "power3.out"
-  })
-  .from([".logo-footer", ".contact-info"], {
-    y: 50,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.1,
-    ease: "power3.out"
-  }, "-=0.5");
-
-  // Create step animation for the title
-  const title = document.querySelector(".contact-title");
-  if (!title) return;
-
-  // Create and cache spans
-  const text = "GET IN TOUCH";
-  title.innerHTML = text.split("").map(char => 
-    `<span style="display: inline-block; transform-origin: center;">${char === " " ? "&nbsp;" : char}</span>`
-  ).join("");
-  
-  const spans = [...title.querySelectorAll("span")];
-  let isPaused = false;
-  let mainTimeline;
-
-  const createMainTimeline = () => {
-    // Zrušíme existujúcu animáciu ak existuje
-    if (mainTimeline) {
-      mainTimeline.kill();
-    }
-
-    // Vytvoríme novú timeline
-    mainTimeline = gsap.timeline({
-      repeat: -1,
-      onRepeat: () => {
-        if (isPaused) {
-          mainTimeline.pause();
-        }
-      }
-    });
-
-    // Reset všetkých písmen
-    spans.forEach(span => {
-      span.classList.remove('filled');
-      gsap.set(span, { scale: 1 });
-    });
-
-    // Animácia dopredu
-    spans.forEach((span, i) => {
-      mainTimeline.to(span, {
-        scale: 1.1,
-        duration: 0.1,
-        ease: "power2.out",
-        onStart: () => {
-          if (!isPaused) span.classList.add('filled');
-        }
-      })
-      .to(span, {
-        scale: 1,
-        duration: 0.1,
-        ease: "power2.in"
-      }, "-=0.05");
-
-      // Pridáme malú pauzu medzi písmenami
-      if (i < spans.length - 1) {
-        mainTimeline.to({}, { duration: 0.075 });
-      }
-    });
-
-    // Pauza na konci
-    mainTimeline.to({}, { duration: 0.5 });
-
-    // Animácia späť
-    [...spans].reverse().forEach((span, i) => {
-      mainTimeline.to(span, {
-        scale: 1.1,
-        duration: 0.1,
-        ease: "power2.out",
-        onStart: () => {
-          if (!isPaused) span.classList.remove('filled');
-        }
-      })
-      .to(span, {
-        scale: 1,
-        duration: 0.1,
-        ease: "power2.in"
-      }, "-=0.05");
-
-      // Pridáme malú pauzu medzi písmenami
-      if (i < spans.length - 1) {
-        mainTimeline.to({}, { duration: 0.075 });
-      }
-    });
-
-    // Pauza pred opakovaním
-    mainTimeline.to({}, { duration: 0.5 });
-
-    return mainTimeline;
-  };
-
-  // Spustíme animáciu
-  mainTimeline = createMainTimeline();
-
-  // Hover efekt
-  const handleMouseEnter = (e) => {
-    isPaused = true;
-    mainTimeline.pause();
-    
-    spans.forEach(span => {
-      span.classList.remove('filled');
-      gsap.to(span, { scale: 1, duration: 0.3 });
-    });
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isPaused) return;
-
-    const rect = title.getBoundingClientRect();
-    spans.forEach(span => {
-      const spanRect = span.getBoundingClientRect();
-      const spanX = spanRect.left + spanRect.width / 2;
-      const spanY = spanRect.top + spanRect.height / 2;
-
-      const distanceFromMouse = Math.hypot(
-        e.clientX - spanX,
-        e.clientY - spanY
-      );
-
-      const maxDistance = 100;
-      if (distanceFromMouse < maxDistance) {
-        gsap.to(span, {
-          scale: 1.1,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-        span.classList.add('filled');
-      } else {
-        gsap.to(span, {
-          scale: 1,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-        span.classList.remove('filled');
-      }
-    });
-  };
-
-  const handleMouseLeave = () => {
-    isPaused = false;
-    spans.forEach(span => {
-      span.classList.remove('filled');
-      gsap.to(span, {
-        scale: 1,
-        duration: 0.3,
-        ease: "power2.out"
-      });
-    });
-    
-    // Reštartujeme animáciu
-    mainTimeline = createMainTimeline();
-  };
-
-  // Event listeners
-  title.addEventListener("mouseenter", handleMouseEnter);
-  title.addEventListener("mousemove", handleMouseMove, { passive: true });
-  title.addEventListener("mouseleave", handleMouseLeave);
-
-  // Cleanup
-  return () => {
-    if (mainTimeline) mainTimeline.kill();
-    title.removeEventListener("mouseenter", handleMouseEnter);
-    title.removeEventListener("mousemove", handleMouseMove);
-    title.removeEventListener("mouseleave", handleMouseLeave);
-  };
 };
 
 // === Global GSAP Entrance Animations ===
@@ -804,4 +557,121 @@ document.addEventListener('DOMContentLoaded', () => {
     const burger = document.querySelector('.burger');
     if (burger) burger.remove();
   }
+
+  initContactGlitch();
 });
+
+const initContactGlitch = () => {
+  const contactTitle = document.querySelector('.contact-title');
+  if (!contactTitle) return;
+
+  // Set up the glitch text
+  let text = contactTitle.textContent.trim();
+  if (!text) {
+    text = 'GET IN TOUCH';
+    contactTitle.textContent = text;
+  }
+  contactTitle.innerHTML = '';
+  contactTitle.textContent = text;
+  contactTitle.classList.add('glitch-text');
+  contactTitle.setAttribute('data-text', text);
+  contactTitle.style.color = '#fff';
+
+  // Add CSS for glitch effect if not already present
+  if (!document.getElementById('glitch-style-contact')) {
+    const style = document.createElement('style');
+    style.id = 'glitch-style-contact';
+    style.textContent = `
+      .glitch-text {
+        position: relative;
+        color: #fff;
+        font-family: inherit;
+        font-weight: bold;
+        font-size: inherit;
+        text-transform: uppercase;
+        letter-spacing: inherit;
+        display: inline-block;
+        line-height: 1.1;
+        overflow: visible;
+      }
+      .glitch-text::before,
+      .glitch-text::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0; top: 0;
+        width: 100%;
+        overflow: hidden;
+        color: #fff;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .glitch-text.glitch-active::before {
+        opacity: 1;
+        animation: glitchTop 0.35s linear;
+      }
+      .glitch-text.glitch-active::after {
+        opacity: 1;
+        animation: glitchBot 0.35s linear;
+      }
+      .glitch-text.glitch-hover::before {
+        opacity: 1;
+        animation: glitchTopHover 0.4s linear;
+      }
+      .glitch-text.glitch-hover::after {
+        opacity: 1;
+        animation: glitchBotHover 0.4s linear;
+      }
+      @keyframes glitchTop {
+        0% { clip-path: inset(0 0 60% 0); transform: translate(-2px, -1px); }
+        20% { clip-path: inset(0 0 60% 0); transform: translate(2px, 1px); }
+        40% { clip-path: inset(0 0 60% 0); transform: translate(-2px, 1px); }
+        60% { clip-path: inset(0 0 60% 0); transform: translate(2px, -1px); }
+        80% { clip-path: inset(0 0 60% 0); transform: translate(-2px, -1px); }
+        100% { clip-path: inset(0 0 60% 0); transform: translate(0, 0); }
+      }
+      @keyframes glitchBot {
+        0% { clip-path: inset(60% 0 0 0); transform: translate(2px, 1px); }
+        20% { clip-path: inset(60% 0 0 0); transform: translate(-2px, -1px); }
+        40% { clip-path: inset(60% 0 0 0); transform: translate(2px, -1px); }
+        60% { clip-path: inset(60% 0 0 0); transform: translate(-2px, 1px); }
+        80% { clip-path: inset(60% 0 0 0); transform: translate(2px, 1px); }
+        100% { clip-path: inset(60% 0 0 0); transform: translate(0, 0); }
+      }
+      @keyframes glitchTopHover {
+        0% { clip-path: inset(0 0 60% 0); transform: translate(-4px, -2px); }
+        20% { clip-path: inset(0 0 60% 0); transform: translate(4px, 2px); }
+        40% { clip-path: inset(0 0 60% 0); transform: translate(-4px, 2px); }
+        60% { clip-path: inset(0 0 60% 0); transform: translate(4px, -2px); }
+        80% { clip-path: inset(0 0 60% 0); transform: translate(-4px, -2px); }
+        100% { clip-path: inset(0 0 60% 0); transform: translate(0, 0); }
+      }
+      @keyframes glitchBotHover {
+        0% { clip-path: inset(60% 0 0 0); transform: translate(4px, 2px); }
+        20% { clip-path: inset(60% 0 0 0); transform: translate(-4px, -2px); }
+        40% { clip-path: inset(60% 0 0 0); transform: translate(4px, -2px); }
+        60% { clip-path: inset(60% 0 0 0); transform: translate(-4px, 2px); }
+        80% { clip-path: inset(60% 0 0 0); transform: translate(4px, 2px); }
+        100% { clip-path: inset(60% 0 0 0); transform: translate(0, 0); }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  // Glitch trigger every 5 seconds
+  function triggerGlitch() {
+    contactTitle.classList.add('glitch-active');
+    setTimeout(() => {
+      contactTitle.classList.remove('glitch-active');
+    }, 400);
+  }
+  triggerGlitch();
+  setInterval(triggerGlitch, 5000);
+
+  // Strong glitch on hover
+  contactTitle.addEventListener('mouseenter', () => {
+    contactTitle.classList.add('glitch-hover');
+  });
+  contactTitle.addEventListener('mouseleave', () => {
+    contactTitle.classList.remove('glitch-hover');
+  });
+};

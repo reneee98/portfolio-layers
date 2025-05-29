@@ -2006,3 +2006,77 @@ body.portfolio-page {
 .expertise-item.expanded .material-symbols-outlined {
   transform: rotate(90deg);
 }
+
+@media (max-width: 768px) {
+  .different-hero {
+    position: relative;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    animation: glitch 0.4s 5s infinite;
+  }
+}
+
+@media (max-width: 480px) {
+  .different-hero {
+    position: relative;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    animation: glitch 0.4s 5s infinite;
+  }
+}
+
+.different-hero {
+  position: relative;
+  color: #fff;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: inherit;
+  text-transform: uppercase;
+  letter-spacing: inherit;
+  display: inline-block;
+  line-height: 1.1;
+  overflow: visible;
+}
+
+.different-hero::before,
+.different-hero::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+  color: #fff;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.different-hero.glitch-active::before {
+  opacity: 1;
+  animation: glitchTop 0.35s linear;
+}
+
+.different-hero.glitch-active::after {
+  opacity: 1;
+  animation: glitchBot 0.35s linear;
+}
+
+@keyframes glitchTop {
+  0% { clip-path: inset(0 0 60% 0); transform: translate(-0.125rem, -0.0625rem); }
+  20% { clip-path: inset(0 0 60% 0); transform: translate(0.125rem, 0.0625rem); }
+  40% { clip-path: inset(0 0 60% 0); transform: translate(-0.125rem, 0.0625rem); }
+  60% { clip-path: inset(0 0 60% 0); transform: translate(0.125rem, -0.0625rem); }
+  80% { clip-path: inset(0 0 60% 0); transform: translate(-0.125rem, -0.0625rem); }
+  100% { clip-path: inset(0 0 60% 0); transform: translate(0, 0); }
+}
+
+@keyframes glitchBot {
+  0% { clip-path: inset(60% 0 0 0); transform: translate(0.125rem, 0.0625rem); }
+  20% { clip-path: inset(60% 0 0 0); transform: translate(-0.125rem, -0.0625rem); }
+  40% { clip-path: inset(60% 0 0 0); transform: translate(0.125rem, -0.0625rem); }
+  60% { clip-path: inset(60% 0 0 0); transform: translate(-0.125rem, 0.0625rem); }
+  80% { clip-path: inset(60% 0 0 0); transform: translate(0.125rem, 0.0625rem); }
+  100% { clip-path: inset(60% 0 0 0); transform: translate(0, 0); }
+}
