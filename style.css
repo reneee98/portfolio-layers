@@ -396,10 +396,16 @@ body {
 
 .left h1,
 .different-hero {
-  font-size: 120px;
+  font-size: 12vw;
   line-height: 1;
-  font-weight: 700;
+  font-weight: 900;
   margin: 0;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+}
+
+.different-hero {
+  color: #AFB1B7;
 }
 
 .hero-text {
@@ -418,9 +424,10 @@ body {
   padding: 12px 12px;
   border-radius: 50px;
   border: 1px solid #3A3A3A;
-  background: #1F1F1F;
+  background: #1F1F1F !important;
   min-width: 70px;
   height: auto;
+  transition: background 0.3s var(--ease-out);
 }
 
 .badge img {
@@ -436,6 +443,9 @@ body {
     padding: 24px 54px;
     gap: 16px;
     min-width: 98px;
+    width: 12.875rem;
+    max-width: 12.875rem;
+    box-sizing: border-box;
   }
   .badge img {
     height: 32px;
@@ -449,7 +459,7 @@ body {
   
   .left h1,
   .different-hero {
-    font-size: 80px;
+    font-size: 7vw;
   }
   
   .hero-text {
@@ -465,7 +475,7 @@ body {
   
   .left h1,
   .different-hero {
-    font-size: 60px;
+    font-size: 9vw;
   }
   
   .hero-text {
@@ -489,7 +499,7 @@ body {
   
   .left h1,
   .different-hero {
-    font-size: 48px;
+    font-size: 11vw;
   }
   
   .hero-text {
@@ -568,8 +578,7 @@ body {
 }
 
 .badge:hover {
-  transform: translateY(-5px);
-  background: #444;
+  background: #444 !important;
 }
 
 .nav a::after {
@@ -653,7 +662,7 @@ body {
   
   .left h1,
   .left h2 {
-    font-size: clamp(50px, 14vw, 140px);
+    font-size: 7vw;
   }
   
   .hero-text {
@@ -708,7 +717,7 @@ body {
   
   .left h1,
   .left h2 {
-    font-size: clamp(40px, 12vw, 120px);
+    font-size: 9vw;
     text-align: center;
   }
   
@@ -748,7 +757,7 @@ body {
   
   .left h1,
   .left h2 {
-    font-size: clamp(36px, 10vw, 90px);
+    font-size: 11vw;
   }
   
   .hero-text {
@@ -2157,4 +2166,11 @@ body.portfolio-page {
   60% { clip-path: inset(60% 0 0 0); transform: translate(-0.125rem, 0.0625rem); }
   80% { clip-path: inset(60% 0 0 0); transform: translate(0.125rem, 0.0625rem); }
   100% { clip-path: inset(60% 0 0 0); transform: translate(0, 0); }
+}
+
+@media (min-width: 1200px) {
+  .left h1,
+  .different-hero {
+    font-size: 10rem;
+  }
 }
