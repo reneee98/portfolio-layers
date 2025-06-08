@@ -1919,14 +1919,17 @@ body.portfolio-page {
 }
 .visuals-row {
   display: flex;
-  gap: 24px;
-  margin-bottom: 0;
+  gap: 8px;
+  margin-bottom: 28px;
 }
 .visuals-row-1 { flex-wrap: wrap; }
 .visuals-row-2 { flex-wrap: wrap; }
 .visuals-row-3 { flex-wrap: wrap; }
 .visuals-row-1 > .visuals-img { flex: 1 1 100%; }
-.visuals-row-2 > .visuals-img { flex: 1 1 48%; }
+.visuals-row-2 > .visuals-img { 
+  flex: 1 1 calc(50% - 14px);
+  aspect-ratio: 555/585;
+}
 .visuals-row-3 > .visuals-img { flex: 1 1 32%; }
 .visuals-img {
   background: #fff;
@@ -1942,6 +1945,22 @@ body.portfolio-page {
   height: auto;
   display: block;
   object-fit: cover;
+}
+
+/* Prvé dva obrázky sa roztiahnu cez celý kontejner s pomerom strán */
+
+.visuals-row-2:first-of-type .visuals-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responzívnosť pre prvé dva obrázky */
+@media (max-width: 480px) {
+  .visuals-row-2:first-of-type {
+    flex-direction: column;
+    gap: 20px;
+  }
 }
 /* Palette blocks */
 .palette-row {
