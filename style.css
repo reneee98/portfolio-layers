@@ -1752,7 +1752,7 @@ body {
     background: #000;
     position: absolute;
     left: 5px;
-    transition: transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
   }
   
   .portfolio-detail-header .burger span:nth-child(1) {
@@ -1765,6 +1765,10 @@ body {
   
   .portfolio-detail-header .burger span:nth-child(3) {
     top: 26px;
+  }
+  
+  .portfolio-detail-header .burger.open span {
+    background: #fff;
   }
   
   .portfolio-detail-header .burger.open span:nth-child(1) {
