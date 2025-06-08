@@ -1558,7 +1558,7 @@ body {
   z-index: 1000;
   background: url('images/background-portfolio-detail.svg') no-repeat center center;
   background-size: cover;
-  min-height: 100vh;
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   padding-bottom: 80px;
@@ -1582,10 +1582,11 @@ body {
   height: 40px;
   width: auto;
   display: block;
+  filter: brightness(0);
 }
 
 .portfolio-detail-header .nav a {
-  color: var(--primary-color);
+  color: #111;
   text-decoration: none;
   font-size: 20px;
   font-weight: 500;
@@ -1594,15 +1595,15 @@ body {
 }
 
 .portfolio-detail-header .nav a:hover {
-  color: var(--secondary-color);
+  color: #666;
 }
 
 .portfolio-detail-header .contact-btn {
   margin-left: 48px;
   padding: 16px 32px;
-  background: var(--primary-color);
-  color: var(--background-dark);
-  border: 2px solid transparent;
+  background: #111;
+  color: #fff;
+  border: 2px solid #111;
   border-radius: 9999px;
   font-size: 18px;
   font-weight: 700;
@@ -1616,8 +1617,8 @@ body {
 
 .portfolio-detail-header .contact-btn:hover {
   background: transparent;
-  color: var(--primary-color);
-  border-color: var(--primary-color);
+  color: #111;
+  border-color: #111;
 }
 
 @media (max-width: 1366px) {
