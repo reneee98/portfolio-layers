@@ -1770,13 +1770,13 @@ body.portfolio-page {
   gap: 32px;
 }
 .portfolio-detail-meta h3 {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 700;
   margin-bottom: 4px;
   color: #111;
 }
 .portfolio-detail-meta p {
-  font-size: 20px;
+  font-size: 16px;
   color: #222;
 }
 
@@ -1788,23 +1788,19 @@ body.portfolio-page {
   justify-content: flex-start;
 }
 
-.about-project-btn {
-  font-size: 22px;
-  font-weight: 600;
-  padding: 16px 36px;
-  border-radius: 32px;
-  border: 2px solid #d1d1d1;
-  background: #fff;
+.about-project-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 7px 15px;
+  border-radius: 50px;
+  border: 1px solid #AFB1B7;
+  background: transparent;
   color: #111;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.33,1,0.68,1);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  font-size: 14px;
+  font-weight: 500;
   margin-bottom: 8px;
-}
-.about-project-btn:hover {
-  background: #111;
-  color: #fff;
-  border-color: #111;
 }
 
 .portfolio-detail-desc {
@@ -1831,7 +1827,7 @@ body.portfolio-page {
 }
 
 .portfolio-detail-description p {
-  font-size: 22px;
+  font-size: 18px;
   line-height: 1.6;
   color: #111;
   max-width: 600px;
@@ -1873,9 +1869,9 @@ body.portfolio-page {
   .portfolio-detail-title {
     font-size: 32px;
   }
-  .about-project-btn {
-    font-size: 16px;
-    padding: 12px 20px;
+  .about-project-badge {
+    font-size: 12px;
+    padding: 6px 12px;
   }
   .portfolio-detail-desc {
     font-size: 16px;
