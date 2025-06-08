@@ -1925,12 +1925,63 @@ body.portfolio-page {
 .visuals-row-1 { flex-wrap: wrap; }
 .visuals-row-2 { flex-wrap: wrap; }
 .visuals-row-3 { flex-wrap: wrap; }
+.visuals-row-4 { 
+  flex-wrap: wrap;
+  display: flex;
+}
+.visuals-row-complex {
+  display: flex;
+  gap: 8px;
+}
+.visuals-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.visuals-right {
+  flex: 1;
+}
+.visuals-bottom-row {
+  display: flex;
+  gap: 8px;
+}
+.visuals-bottom-row .visuals-img {
+  flex: 1;
+}
+
+/* Aspect ratios for complex layout */
+.visuals-right .visuals-img {
+  height: 100%;
+}
+
+.visuals-left > .visuals-img {
+  aspect-ratio: 716/226;
+  height: 100%;
+}
+
+.visuals-bottom-row .visuals-img {
+  aspect-ratio: 354/376;
+}
+
+/* Image styling for complex layout */
+.visuals-right .visuals-img img,
+.visuals-left > .visuals-img img,
+.visuals-bottom-row .visuals-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .visuals-row-1 > .visuals-img { flex: 1 1 100%; }
 .visuals-row-2 > .visuals-img { 
-  flex: 1 1 calc(50% - 14px);
+  flex: 1 1 calc(50% - 4px);
   aspect-ratio: 555/585;
 }
 .visuals-row-3 > .visuals-img { flex: 1 1 32%; }
+.visuals-row-4 > .visuals-img { 
+  flex: 1 1 25%;
+  aspect-ratio: 1;
+}
 .visuals-img {
   background: #fff;
   border-radius: 16px;
@@ -1955,11 +2006,45 @@ body.portfolio-page {
   object-fit: cover;
 }
 
+/* Sekcia s jedným obrázkom - pomer strán 1117x643 */
+.visuals-row-1 .visuals-img {
+  aspect-ratio: 1117/643;
+}
+
+.visuals-row-1 .visuals-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Sekcia s troma obrázkami - pomer strán 367x585 */
+.visuals-row-3 .visuals-img {
+  aspect-ratio: 367/585;
+}
+
+.visuals-row-3 .visuals-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Responzívnosť pre prvé dva obrázky */
 @media (max-width: 480px) {
   .visuals-row-2:first-of-type {
     flex-direction: column;
     gap: 20px;
+  }
+  
+  .visuals-row-4 {
+    flex-direction: column;
+  }
+  
+  .visuals-row-complex {
+    flex-direction: column;
+  }
+  
+  .visuals-bottom-row {
+    flex-direction: column;
   }
 }
 /* Palette blocks */
