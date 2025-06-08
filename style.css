@@ -1721,7 +1721,7 @@ body.portfolio-page {
   gap: 48px;
   max-width: none;
   margin: 0;
-  padding: 40px 80px;
+  padding: 40px 26px;
   width: 100%;
   justify-content: center;
   background: transparent;
@@ -1915,7 +1915,7 @@ body.portfolio-page {
   flex-direction: column;
   gap: 40px;
   background: #fff;
-  padding: 0 80px;
+  padding: 0 0;
 }
 .visuals-row {
   display: flex;
