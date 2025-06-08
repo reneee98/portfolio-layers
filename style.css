@@ -2074,7 +2074,7 @@ body.portfolio-page {
   gap: 8px;
 }
 .visuals-right {
-  flex: 1;
+  flex: 0.5;
 }
 .visuals-bottom-row {
   display: flex;
@@ -2100,8 +2100,11 @@ body.portfolio-page {
 
 /* Image styling for complex layout */
 .visuals-right .visuals-img img,
+.visuals-right .visuals-img video,
 .visuals-left > .visuals-img img,
-.visuals-bottom-row .visuals-img img {
+.visuals-left > .visuals-img video,
+.visuals-bottom-row .visuals-img img,
+.visuals-bottom-row .visuals-img video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -2125,7 +2128,8 @@ body.portfolio-page {
   align-items: center;
   justify-content: center;
 }
-.visuals-img img {
+.visuals-img img,
+.visuals-img video {
   width: 100%;
   height: auto;
   display: block;
@@ -2134,7 +2138,8 @@ body.portfolio-page {
 
 /* Prvé dva obrázky sa roztiahnu cez celý kontejner s pomerom strán */
 
-.visuals-row-2:first-of-type .visuals-img img {
+.visuals-row-2:first-of-type .visuals-img img,
+.visuals-row-2:first-of-type .visuals-img video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -2145,7 +2150,8 @@ body.portfolio-page {
   aspect-ratio: 1117/643;
 }
 
-.visuals-row-1 .visuals-img img {
+.visuals-row-1 .visuals-img img,
+.visuals-row-1 .visuals-img video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -2156,7 +2162,8 @@ body.portfolio-page {
   aspect-ratio: 367/585;
 }
 
-.visuals-row-3 .visuals-img img {
+.visuals-row-3 .visuals-img img,
+.visuals-row-3 .visuals-img video {
   width: 100%;
   height: 100%;
   object-fit: cover;
