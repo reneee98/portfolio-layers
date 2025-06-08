@@ -1834,7 +1834,7 @@ body.portfolio-page {
 
 @media (min-width: 769px) {
   .portfolio-detail-header .portfolio-detail-grid {
-    padding: 40px 80px;
+    padding: 40px clamp(20px, 5vw, 80px);
   }
 }
 
@@ -2037,7 +2037,7 @@ body.portfolio-page {
   flex-direction: column;
   gap: 40px;
   background: #fff;
-  padding: 0 0;
+  padding: 0 clamp(20px, 5vw, 80px);
   overflow-x: hidden;
 }
 .visuals-row {
@@ -2403,6 +2403,52 @@ body.portfolio-page {
 @media (min-width: 1920px) {
   .hero-text {
     margin-left: 80rem;
+  }
+  
+  /* Homepage Navigation - Large Screens */
+  .nav a {
+    font-size: 24px;
+  }
+  
+  .contact-btn {
+    font-size: 20px;
+    padding: 18px 36px;
+  }
+  
+  /* Portfolio Detail Page - Large Screens */
+  .portfolio-detail-header .portfolio-detail-title {
+    font-size: 140px;
+  }
+  
+  .portfolio-detail-desc {
+    font-size: 26px;
+  }
+  
+  .portfolio-detail-meta h3 {
+    font-size: 24px;
+  }
+  
+  .portfolio-detail-meta p {
+    font-size: 20px;
+  }
+  
+  .portfolio-detail-description p {
+    font-size: 22px;
+  }
+  
+  .about-project-badge {
+    font-size: 16px;
+    padding: 8px 18px;
+  }
+  
+  /* Navigation and header elements */
+  .portfolio-detail-header .nav a {
+    font-size: 24px;
+  }
+  
+  .portfolio-detail-header .contact-btn {
+    font-size: 20px;
+    padding: 18px 36px;
   }
 }
 
