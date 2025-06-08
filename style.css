@@ -1556,9 +1556,10 @@ body {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .portfolio-detail-header .top-bar {
@@ -1577,10 +1578,11 @@ body {
   height: 40px;
   width: auto;
   display: block;
+  filter: brightness(0);
 }
 
 .portfolio-detail-header .nav a {
-  color: var(--primary-color);
+  color: #111;
   text-decoration: none;
   font-size: 20px;
   font-weight: 500;
@@ -1589,15 +1591,15 @@ body {
 }
 
 .portfolio-detail-header .nav a:hover {
-  color: var(--secondary-color);
+  color: #666;
 }
 
 .portfolio-detail-header .contact-btn {
   margin-left: 48px;
   padding: 16px 32px;
-  background: var(--primary-color);
-  color: var(--background-dark);
-  border: 2px solid transparent;
+  background: #111;
+  color: #fff;
+  border: 2px solid #111;
   border-radius: 9999px;
   font-size: 18px;
   font-weight: 700;
@@ -1611,8 +1613,8 @@ body {
 
 .portfolio-detail-header .contact-btn:hover {
   background: transparent;
-  color: var(--primary-color);
-  border-color: var(--primary-color);
+  color: #111;
+  border-color: #111;
 }
 
 @media (max-width: 1366px) {
@@ -1656,22 +1658,37 @@ body {
   }
   
   .portfolio-detail-grid {
-    padding-top: 120px;
+    margin: 120px 20px 20px 20px;
+    padding: 40px 20px;
+  }
+  
+  .portfolio-visuals {
+    margin: 40px 20px 0 20px;
+    width: calc(100% - 40px);
+    padding: 40px 20px;
   }
 }
 
 body.portfolio-page {
-  background: #fff !important;
+  background: url('images/background-portfolio-detail.png') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
 .portfolio-detail-grid {
-  background-color: #fff !important;
-  padding-top: 180px;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 24px;
+  margin: 180px 40px 40px 40px;
+  padding: 80px 40px 40px 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 /* === Portfolio Detail Page === */
 .portfolio-detail-section {
-  background: #fff;
+  background: transparent;
   color: #111;
   padding: 0;
   min-height: 100vh;
@@ -1687,10 +1704,8 @@ body.portfolio-page {
   gap: 64px;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 80px 40px 40px 40px;
   width: 100%;
   align-items: flex-start;
-  background: #fff;
 }
 
 .portfolio-detail-info {
@@ -1841,12 +1856,20 @@ body.portfolio-page {
 
 /* === Smile Area Visuals Grid === */
 .portfolio-visuals {
-  margin: 64px auto 0 auto;
+  margin: 64px 40px 0 40px;
   max-width: 1200px;
-  width: 100%;
+  width: calc(100% - 80px);
   display: flex;
   flex-direction: column;
   gap: 40px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 60px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin-left: auto;
+  margin-right: auto;
 }
 .visuals-row {
   display: flex;
