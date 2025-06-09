@@ -4132,3 +4132,18 @@ e/* Palette blocks */
     background: #ffffff !important;
   }
 }
+
+/* Contact title hover effect */
+.contact-title-wrapper a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.contact-title-wrapper a:hover .contact-title {
+  -webkit-text-fill-color: #fff !important;
+  text-fill-color: #fff !important;
+  transform: scale(1.02);
+  text-shadow: 0 4px 32px rgba(255, 255, 255, 0.4), 0 0 4px #fff !important;
+}
