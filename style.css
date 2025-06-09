@@ -3583,12 +3583,11 @@ e/* Palette blocks */
 .tag {
   display: inline-block;
   padding: 8px 18px;
-  background: #fff;
+  background: #EFEFEE;
   border-radius: 100px;
   font-size: 18px;
   font-weight: 500;
   color: #111;
-  border: 1.5px solid #111;
   letter-spacing: 0.08em;
   box-shadow: none;
 }

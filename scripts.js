@@ -789,20 +789,23 @@ window.addEventListener('load', () => {
 });
 
 const initContactGlitch = () => {
-  const contactTitle = document.querySelector('.contact-title');
-  if (!contactTitle) return;
+  const contactTitles = document.querySelectorAll('.contact-title');
+  if (!contactTitles.length) return;
 
-  // Set up the glitch text
-  let text = contactTitle.textContent.trim();
-  if (!text) {
-    text = 'GET IN TOUCH';
+  contactTitles.forEach(contactTitle => {
+    // Set up the glitch text for each title
+    let text = contactTitle.textContent.trim();
+    if (!text) {
+      text = contactTitle.id === 'aboutContactTitle1' ? 'READY TO WORK' : 
+             contactTitle.id === 'aboutContactTitle2' ? 'TOGETHER?' : 'GET IN TOUCH';
+      contactTitle.textContent = text;
+    }
+    contactTitle.innerHTML = '';
     contactTitle.textContent = text;
-  }
-  contactTitle.innerHTML = '';
-  contactTitle.textContent = text;
-  contactTitle.classList.add('glitch-text');
-  contactTitle.setAttribute('data-text', text);
-  contactTitle.style.color = '#fff';
+    contactTitle.classList.add('glitch-text');
+    contactTitle.setAttribute('data-text', text);
+    contactTitle.style.color = '#fff';
+  });
 
   // Add CSS for glitch effect if not already present
   if (!document.getElementById('glitch-style-contact')) {
@@ -884,21 +887,25 @@ const initContactGlitch = () => {
     document.head.appendChild(style);
   }
 
-  // Glitch trigger every 5 seconds
+  // Glitch trigger every 5 seconds for all contact titles
   function triggerGlitch() {
-    contactTitle.classList.add('glitch-active');
-    setTimeout(() => {
-      contactTitle.classList.remove('glitch-active');
-    }, 400);
+    contactTitles.forEach(contactTitle => {
+      contactTitle.classList.add('glitch-active');
+      setTimeout(() => {
+        contactTitle.classList.remove('glitch-active');
+      }, 400);
+    });
   }
   triggerGlitch();
   setInterval(triggerGlitch, 5000);
 
-  // Strong glitch on hover
-  contactTitle.addEventListener('mouseenter', () => {
-    contactTitle.classList.add('glitch-hover');
-  });
-  contactTitle.addEventListener('mouseleave', () => {
-    contactTitle.classList.remove('glitch-hover');
+  // Strong glitch on hover for all contact titles
+  contactTitles.forEach(contactTitle => {
+    contactTitle.addEventListener('mouseenter', () => {
+      contactTitle.classList.add('glitch-hover');
+    });
+    contactTitle.addEventListener('mouseleave', () => {
+      contactTitle.classList.remove('glitch-hover');
+    });
   });
 };
