@@ -53,7 +53,65 @@ const initHeroAnimations = () => {
 };
 const initPortfolioAnimations = () => {};
 const initExpertiseAnimations = () => {};
-const initLogoCarousel = () => {
+// === Portfolio Detail Page Animations ===
+const initPortfolioDetailAnimations = () => {
+  // Check if we're on portfolio detail page
+  if (!document.body.classList.contains('portfolio-page')) return;
+
+  // Portfolio content entrance animations - similar to homepage
+  gsap.from('.portfolio-detail-title', {
+    y: 80,
+    opacity: 0,
+    duration: 1.2,
+    delay: 0.2,
+    ease: 'power3.out',
+  });
+
+  gsap.from('.portfolio-detail-meta > div', {
+    y: 50,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.1,
+    delay: 0.4,
+    ease: 'power3.out',
+  });
+
+  gsap.from('.about-project-badge', {
+    y: 30,
+    opacity: 0,
+    duration: 0.8,
+    delay: 0.6,
+    ease: 'power3.out',
+  });
+
+  gsap.from('.portfolio-detail-description p', {
+    y: 40,
+    opacity: 0,
+    duration: 0.8,
+    delay: 0.8,
+    ease: 'power3.out',
+  });
+
+  // Simple scroll-triggered animations for visuals
+  const visualRows = document.querySelectorAll('.visuals-row, .visuals-complex, .visuals-left, .visuals-bottom-row');
+  
+  visualRows.forEach((row, index) => {
+    gsap.from(row, {
+      scrollTrigger: {
+        trigger: row,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse'
+      },
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      delay: index * 0.1,
+      ease: 'power3.out',
+    });
+  });
+};
+
+  const initLogoCarousel = () => {
   const track = document.getElementById("logoTrack");
   if (!track) return;
 
@@ -533,10 +591,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initExpertiseCards();
   initPortfolioAnimations();
   initExpertiseAnimations();
-  initContactAnimations();
-  initGlobalEntranceAnimations();
-  
-  // Fix for the contact section title animation
+      initContactAnimations();
+    initGlobalEntranceAnimations();
+    initPortfolioDetailAnimations();
+    
+    // Fix for the contact section title animation
   const contactTitle = document.getElementById('contactTitle');
   if (contactTitle) {
     // Create staggered spans for letters for the animation effect
