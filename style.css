@@ -808,7 +808,7 @@ body {
   
   .logo-track,
   .logo-set {
-    gap: 20px;
+    gap: 0px;
   }
   
   .hero-content .contact-btn {
