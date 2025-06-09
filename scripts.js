@@ -136,25 +136,23 @@ const initAboutAnimations = () => {
     });
   });
 
-  // About footer animations with same effect as contact title
-  const aboutContactTitle = document.getElementById('aboutContactTitle');
-  if (aboutContactTitle) {
-    // Simple scroll animation without character splitting for now
-    // Since we have <br/> tag which complicates character animation
-
-    // Contact title scroll animation
-    gsap.from(aboutContactTitle, {
+  // About footer animations with same effect as homepage contact title
+  gsap.fromTo(
+    ".contact-title",
+    { opacity: 0, scale: 0.92 },
+    {
+      opacity: 1,
+      scale: 1,
+      duration: 1.2,
+      ease: "power3.out",
       scrollTrigger: {
-        trigger: '.about-footer',
-        start: 'top 80%',
-        toggleActions: 'play none none reverse'
-      },
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      ease: 'power3.out',
-    });
-  }
+        trigger: ".about-footer",
+        start: "top 80%",
+        end: "bottom top",
+        toggleActions: "play none none reverse"
+      }
+    }
+  );
 
   // Footer CTA button animation
   const footerCta = document.querySelector('.footer-cta');
