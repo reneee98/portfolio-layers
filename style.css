@@ -1497,6 +1497,8 @@ body {
     grid-column: 1;
     justify-self: start;
     padding: 0 clamp(20px, 5vw, 40px);
+    margin: 0 auto;
+    text-align: center;
   }
 
   .contact-info-label {
@@ -1560,6 +1562,7 @@ body {
 
   .logo-footer {
     font-size: 14px;
+    text-align: center;
   }
 
   .hero-content .contact-btn {
