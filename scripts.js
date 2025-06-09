@@ -12,17 +12,42 @@ const initRandomVideo = () => {
   
   videoElements.forEach(video => {
     const source = video.querySelector('source');
-    if (source) {
+    if (source && source.src !== randomVideo) {
+      // Safari-friendly video handling
       source.src = randomVideo;
-      // Force the video element to reset and load the new source
-      video.pause();
-      video.currentTime = 0;
-      video.load();
       
-      // Add event listener to ensure video starts playing after load
-      video.onloadeddata = () => {
-        video.play();
+      // Clear previous event listeners to avoid conflicts
+      video.removeEventListener('loadeddata', video._playHandler);
+      video.removeEventListener('canplay', video._playHandler);
+      video.removeEventListener('error', video._errorHandler);
+      
+      // Create handlers that work better with Safari
+      video._playHandler = () => {
+        video.play().catch(e => {
+          console.log('Video autoplay prevented:', e);
+          // Fallback: try to play on user interaction
+          document.addEventListener('click', () => {
+            video.play().catch(() => {});
+          }, { once: true });
+        });
       };
+      
+      video._errorHandler = (e) => {
+        console.warn('Video load error:', e);
+        // Fallback to first video if random one fails
+        if (source.src !== videos[0]) {
+          source.src = videos[0];
+          video.load();
+        }
+      };
+      
+      // Use multiple events for better Safari compatibility
+      video.addEventListener('loadeddata', video._playHandler);
+      video.addEventListener('canplay', video._playHandler); 
+      video.addEventListener('error', video._errorHandler);
+      
+      // Gentle reload without forcing current time reset (Safari sensitive)
+      video.load();
     }
   });
 };
@@ -812,9 +837,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactGlitch();
 });
 
-// Also initialize random video on window load to ensure all resources are available
+// Initialize video only once when all resources are loaded
+let videoInitialized = false;
 window.addEventListener('load', () => {
-  initRandomVideo();
+  if (!videoInitialized) {
+    initRandomVideo();
+    videoInitialized = true;
+  }
 });
 
 const initContactGlitch = () => {
