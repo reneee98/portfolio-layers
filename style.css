@@ -2054,7 +2054,7 @@ body.portfolio-page {
 .visuals-row {
   display: flex;
   gap: 8px;
-  margin-bottom: 28px;
+  margin-bottom: 12px;
 }
 .visuals-row-1 { flex-wrap: wrap; }
 .visuals-row-2 { flex-wrap: wrap; }
@@ -2171,9 +2171,13 @@ body.portfolio-page {
 
 /* Responzívnosť pre prvé dva obrázky */
 @media (max-width: 480px) {
+  .visuals-row {
+    gap: 12px;
+  }
+  
   .visuals-row-2:first-of-type {
     flex-direction: column;
-    gap: 20px;
+    gap: 12px;
   }
   
   .visuals-row-4 {
@@ -2182,10 +2186,16 @@ body.portfolio-page {
   
   .visuals-row-complex {
     flex-direction: column;
+    gap: 12px;
+  }
+  
+  .visuals-left {
+    gap: 12px;
   }
   
   .visuals-bottom-row {
     flex-direction: column;
+    gap: 12px;
   }
 }
 /* Palette blocks */

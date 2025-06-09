@@ -156,6 +156,11 @@ const initMobileMenu = () => {
     burger.setAttribute('aria-expanded', isOpen);
     nav.classList.toggle('show');
     document.body.style.overflow = isOpen ? 'hidden' : '';
+    
+    // Add menu-open class for portfolio page specifically
+    if (document.body.classList.contains('portfolio-page')) {
+      document.body.classList.toggle('menu-open', isOpen);
+    }
   };
 
   burger.addEventListener('click', toggleMenu);
