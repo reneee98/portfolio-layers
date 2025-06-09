@@ -323,7 +323,13 @@ const initMobileMenu = () => {
   const burger = document.getElementById('burger');
   if (!burger) return; // Safety check
   
-  const nav = document.querySelector('.nav');
+  // Select appropriate nav element based on page
+  let nav;
+  if (document.body.classList.contains('about-page')) {
+    nav = document.querySelector('.about-nav-overlay');
+  } else {
+    nav = document.querySelector('.nav');
+  }
   if (!nav) return; // Safety check
   
   const navLinks = nav.querySelectorAll('a');
@@ -351,6 +357,12 @@ const initMobileMenu = () => {
   };
 
   burger.addEventListener('click', toggleMenu);
+
+  // Also listen for close button inside overlay (about page)
+  const burgerClose = document.getElementById('burger-close');
+  if (burgerClose) {
+    burgerClose.addEventListener('click', toggleMenu);
+  }
 
   // Close menu when a link is clicked
   navLinks.forEach(link => {
@@ -774,11 +786,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Trigger a resize event to initialize responsive behaviors
   window.dispatchEvent(new Event('resize'));
 
-  // Odstránenie burger menu z DOM na desktope a tablete
-  if (window.innerWidth > 768) {
-    const burger = document.querySelector('.burger');
-    if (burger) burger.remove();
-  }
+
 
   initContactGlitch();
 });
