@@ -117,10 +117,10 @@ const initAboutAnimations = () => {
   });
 
   // Scroll-triggered animations for sections
-  const sections = document.querySelectorAll('.our-story, .our-values, .our-team, .our-stats, .about-cta');
+  const sections = document.querySelectorAll('.our-story, .our-values, .our-stats');
   
   sections.forEach((section, index) => {
-    const elements = section.querySelectorAll('.section-title, .tag, .value-item, .team-member, .stat-item, .cta-content');
+    const elements = section.querySelectorAll('.section-title, .tag, .value-item, .stat-item');
     
     gsap.from(elements, {
       scrollTrigger: {
@@ -135,6 +135,43 @@ const initAboutAnimations = () => {
       ease: 'power3.out',
     });
   });
+
+  // About footer animations with same effect as contact title
+  const aboutContactTitle = document.getElementById('aboutContactTitle');
+  if (aboutContactTitle) {
+    // Simple scroll animation without character splitting for now
+    // Since we have <br/> tag which complicates character animation
+
+    // Contact title scroll animation
+    gsap.from(aboutContactTitle, {
+      scrollTrigger: {
+        trigger: '.about-footer',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse'
+      },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: 'power3.out',
+    });
+  }
+
+  // Footer CTA button animation
+  const footerCta = document.querySelector('.footer-cta');
+  if (footerCta) {
+    gsap.from(footerCta, {
+      scrollTrigger: {
+        trigger: '.about-footer',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse'
+      },
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      delay: 0.3,
+      ease: 'power3.out',
+    });
+  }
 };
 
 // === Portfolio Detail Page Animations ===
