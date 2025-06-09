@@ -60,6 +60,17 @@
   box-sizing: border-box;
 }
 
+/* Text selection styling */
+::selection {
+  background-color: #888;
+  color: #fff;
+}
+
+::-moz-selection {
+  background-color: #888;
+  color: #fff;
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
