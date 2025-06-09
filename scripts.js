@@ -327,6 +327,8 @@ const initMobileMenu = () => {
   let nav;
   if (document.body.classList.contains('about-page')) {
     nav = document.querySelector('.about-nav-overlay');
+  } else if (document.body.classList.contains('works-page')) {
+    nav = document.querySelector('.works-nav-overlay');
   } else {
     nav = document.querySelector('.nav');
   }

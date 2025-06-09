@@ -3875,3 +3875,160 @@ e/* Palette blocks */
   top: 26px;
   transform: translateY(-7px) rotate(-45deg);
 }
+
+/* Works page mobile nav overlay - direct child of body */
+.works-nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999999 !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  padding: 80px 20px;
+}
+
+.works-nav-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.works-nav-overlay ul {
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  opacity: 0;
+  transition: opacity 0.5s;
+  padding: 0;
+  list-style: none;
+}
+
+.works-nav-overlay.show ul {
+  opacity: 1;
+  transition-delay: 0.3s;
+}
+
+.works-nav-overlay a {
+  font-size: 24px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s, transform 0.3s, color 0.3s;
+  color: #fff;
+  text-decoration: none;
+}
+
+.works-nav-overlay.show a {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Close button inside works menu overlay */
+.works-nav-overlay .burger-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: block;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  z-index: 99999999;
+  padding: 0;
+}
+
+.works-nav-overlay .burger-close span {
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: #fff;
+  position: absolute;
+  left: 5px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.works-nav-overlay .burger-close span:nth-child(1) {
+  top: 12px;
+  transform: translateY(7px) rotate(45deg);
+}
+
+.works-nav-overlay .burger-close span:nth-child(2) {
+  top: 19px;
+  opacity: 0;
+}
+
+.works-nav-overlay .burger-close span:nth-child(3) {
+  top: 26px;
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Hide desktop nav on mobile for works page */
+@media (max-width: 768px) {
+  .works-header .nav-desktop {
+    display: none;
+  }
+  
+  .works-header .burger {
+    display: block;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    z-index: 99999999 !important;
+    padding: 0;
+  }
+  
+  .works-header .burger span {
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: #000;
+    position: absolute;
+    left: 5px;
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
+  }
+  
+  .works-header .burger span:nth-child(1) {
+    top: 12px;
+  }
+  
+  .works-header .burger span:nth-child(2) {
+    top: 19px;
+  }
+  
+  .works-header .burger span:nth-child(3) {
+    top: 26px;
+  }
+  
+  .works-header .burger.open span {
+    background: #fff;
+  }
+  
+  .works-header .burger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  
+  .works-header .burger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .works-header .burger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+  
+  /* Ensure burger is always visible - white on black menu overlay */
+  .works-header .burger.open span {
+    background: #ffffff !important;
+  }
+}
