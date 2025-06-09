@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About Us - Layers Creative Agency" />
+  <meta name="theme-color" content="#000000" />
+  <title>About Us - Layers</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<body class="about-page">
+
+  <header class="about-header">
+    <div class="top-bar">
+      <a href="index.html" class="logo" aria-label="Layers">
+        <img src="images/layers-logo.svg" alt="Layers logo" class="logo-img">
+      </a>
+
+      <nav class="nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="works.html">Works</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="index.html#contact" class="contact-btn">
+        Contact me
+        <span class="material-symbols-outlined">arrow_outward</span>
+      </a>
+
+      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- About Page Title -->
+    <div class="about-content">
+      <h1 class="about-title">ABOUT US</h1>
+      <p class="about-subtitle">We're a creative agency focused on crafting exceptional digital experiences and memorable brand identities.</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- Our Story Section -->
+    <section class="our-story">
+      <div class="container">
+        <div class="story-grid">
+          <div class="story-content">
+            <span class="tag">Our Story</span>
+            <h2 class="section-title">We believe great design <span>changes everything.</span></h2>
+            <p>Founded in 2020, Layers started as a passion project between two designers who shared a vision: to create brands and digital experiences that don't just look good, but feel extraordinary.</p>
+            <p>Today, we're a tight-knit team of creators, strategists, and problem-solvers who work with ambitious brands ready to make their mark. From startups to established companies, we help our clients stand out in a crowded market through thoughtful design and strategic thinking.</p>
+          </div>
+          <div class="story-image">
+            <img src="https://via.placeholder.com/600x400/f0f0f0/999999?text=Our+Studio" alt="Layers creative studio workspace" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Values Section -->
+    <section class="our-values">
+      <div class="container">
+        <div class="values-header">
+          <span class="tag">Our Values</span>
+          <h2 class="section-title">What drives us <span>every single day.</span></h2>
+        </div>
+        
+        <div class="values-grid">
+          <div class="value-item">
+            <div class="value-number">01</div>
+            <h3>Authentic Design</h3>
+            <p>We believe in creating designs that are true to your brand's essence. No templates, no shortcuts – just authentic, purposeful design that tells your unique story.</p>
+          </div>
+          
+          <div class="value-item">
+            <div class="value-number">02</div>
+            <h3>Collaborative Spirit</h3>
+            <p>Your vision combined with our expertise creates magic. We work closely with our clients, ensuring every decision is made together and every goal is shared.</p>
+          </div>
+          
+          <div class="value-item">
+            <div class="value-number">03</div>
+            <h3>Continuous Growth</h3>
+            <p>The design world never stops evolving, and neither do we. We're constantly learning, experimenting, and pushing boundaries to deliver cutting-edge solutions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Stats Section -->
+    <section class="our-stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Projects Completed</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">30+</div>
+            <div class="stat-label">Happy Clients</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Client Satisfaction</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="about-cta">
+      <div class="container">
+        <div class="cta-content">
+          <h2 class="cta-title">Ready to work together?</h2>
+          <p class="cta-description">Let's create something extraordinary. Get in touch and let's discuss your next project.</p>
+          <a href="index.html#contact" class="cta-button">
+            Start a project
+            <span class="material-symbols-outlined">arrow_outward</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="contact-title-wrapper">
+          <h2 class="contact-title" id="contactTitle">GET IN TOUCH</h2>
+        </div>
+        <div class="logo-footer">
+          <img src="images/layers-logo.svg" alt="Layers logo" class="logo-img">
+        </div>
+        <div class="contact-info">
+          <div>
+            <div class="contact-info-label">Our contact</div>
+            <a href="tel:+421944439749" class="contact-link">+421 944 439 749</a>
+            <a href="mailto:hello@layers.sk" class="contact-link">hello@layers.sk</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  
+  <!-- Our scripts -->
+  <script src="scripts.js"></script>
+
+</body>
+</html> 

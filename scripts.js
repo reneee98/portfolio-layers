@@ -94,6 +94,49 @@ const initWorksAnimations = () => {
   });
 };
 
+// === About Page Animations ===
+const initAboutAnimations = () => {
+  // Check if we're on about page
+  if (!document.body.classList.contains('about-page')) return;
+
+  // About header content animations
+  gsap.from('.about-title', {
+    y: 80,
+    opacity: 0,
+    duration: 1.2,
+    delay: 0.2,
+    ease: 'power3.out',
+  });
+
+  gsap.from('.about-subtitle', {
+    y: 40,
+    opacity: 0,
+    duration: 0.8,
+    delay: 0.4,
+    ease: 'power3.out',
+  });
+
+  // Scroll-triggered animations for sections
+  const sections = document.querySelectorAll('.our-story, .our-values, .our-team, .our-stats, .about-cta');
+  
+  sections.forEach((section, index) => {
+    const elements = section.querySelectorAll('.section-title, .tag, .value-item, .team-member, .stat-item, .cta-content');
+    
+    gsap.from(elements, {
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse'
+      },
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: 'power3.out',
+    });
+  });
+};
+
 // === Portfolio Detail Page Animations ===
 const initPortfolioDetailAnimations = () => {
   // Check if we're on portfolio detail page
@@ -263,6 +306,11 @@ const initMobileMenu = () => {
     
     // Add menu-open class for works page specifically
     if (document.body.classList.contains('works-page')) {
+      document.body.classList.toggle('menu-open', isOpen);
+    }
+    
+    // Add menu-open class for about page specifically
+    if (document.body.classList.contains('about-page')) {
       document.body.classList.toggle('menu-open', isOpen);
     }
   };
@@ -641,6 +689,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initGlobalEntranceAnimations();
     initPortfolioDetailAnimations();
     initWorksAnimations();
+    initAboutAnimations();
     
     // Fix for the contact section title animation
   const contactTitle = document.getElementById('contactTitle');
