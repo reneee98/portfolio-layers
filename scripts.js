@@ -248,6 +248,71 @@ const initAboutAnimations = () => {
     ease: 'power3.out',
   });
 
+  // Counter animations for stat numbers with gentle visual effects
+  const statNumbers = document.querySelectorAll('.stat-number');
+  statNumbers.forEach((statNumber, index) => {
+    const text = statNumber.textContent;
+    const hasPlus = text.includes('+');
+    const hasPercent = text.includes('%');
+    const numberValue = parseInt(text);
+    
+    // Set initial values for gentle animation
+    statNumber.textContent = hasPercent ? '0%' : (hasPlus ? '0+' : '0');
+    gsap.set(statNumber, { opacity: 0, scale: 0.8 });
+    
+    // Gentle entrance animation
+    gsap.to(statNumber, {
+      scrollTrigger: {
+        trigger: '.our-stats',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse'
+      },
+      opacity: 1,
+      scale: 1,
+      duration: 0.6,
+      delay: 0.2 + (index * 0.1),
+      ease: 'back.out(1.7)',
+    });
+    
+    // Counter animation with gentle pulsing effect
+    gsap.to(statNumber, {
+      scrollTrigger: {
+        trigger: '.our-stats',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse'
+      },
+      duration: 2.5,
+      delay: 0.4 + (index * 0.1),
+      ease: 'power2.out',
+      onUpdate: function() {
+        const currentValue = Math.round(numberValue * this.progress());
+        if (hasPercent) {
+          statNumber.textContent = currentValue + '%';
+        } else if (hasPlus) {
+          statNumber.textContent = currentValue + '+';
+        } else {
+          statNumber.textContent = currentValue;
+        }
+        
+        // Gentle pulsing effect during counting
+        if (this.progress() < 1) {
+          const pulseScale = 1 + (Math.sin(this.progress() * Math.PI * 6) * 0.02);
+          gsap.set(statNumber, { scale: pulseScale });
+        }
+      },
+      onComplete: function() {
+        // Final gentle bounce when counting is complete
+        gsap.to(statNumber, {
+          scale: 1.1,
+          duration: 0.2,
+          ease: 'power2.out',
+          yoyo: true,
+          repeat: 1
+        });
+      }
+    });
+  });
+
   // About footer animations with same effect as homepage contact title
   gsap.fromTo(
     ".contact-title",
