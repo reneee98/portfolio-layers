@@ -141,24 +141,111 @@ const initAboutAnimations = () => {
     ease: 'power3.out',
   });
 
-  // Scroll-triggered animations for sections
-  const sections = document.querySelectorAll('.our-story, .our-values, .our-stats');
-  
-  sections.forEach((section, index) => {
-    const elements = section.querySelectorAll('.section-title, .tag, .value-item, .stat-item');
+  // Our Story section animations
+  gsap.from('.our-story .tag', {
+    scrollTrigger: {
+      trigger: '.our-story',
+      start: 'top 85%',
+      toggleActions: 'play none none reverse'
+    },
+    y: 30,
+    opacity: 0,
+    duration: 0.8,
+    ease: 'power3.out',
+  });
     
-    gsap.from(elements, {
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 85%',
-        toggleActions: 'play none none reverse'
-      },
-      y: 40,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: 'power3.out',
-    });
+  gsap.from('.our-story .section-title', {
+    scrollTrigger: {
+      trigger: '.our-story',
+      start: 'top 85%',
+      toggleActions: 'play none none reverse'
+    },
+    y: 40,
+    opacity: 0,
+    duration: 0.8,
+    delay: 0.1,
+    ease: 'power3.out',
+  });
+
+  gsap.from('.story-content p', {
+    scrollTrigger: {
+      trigger: '.our-story',
+      start: 'top 80%',
+      toggleActions: 'play none none reverse'
+    },
+    y: 30,
+    opacity: 0,
+    duration: 0.8,
+    delay: 0.2,
+    stagger: 0.1,
+    ease: 'power3.out',
+  });
+
+  gsap.from('.story-image', {
+    scrollTrigger: {
+      trigger: '.our-story',
+      start: 'top 80%',
+      toggleActions: 'play none none reverse'
+    },
+    x: 50,
+    opacity: 0,
+    duration: 1,
+    delay: 0.3,
+    ease: 'power3.out',
+  });
+
+  // Our Values section animations
+  gsap.from('.our-values .tag', {
+    scrollTrigger: {
+      trigger: '.our-values',
+      start: 'top 85%',
+      toggleActions: 'play none none reverse'
+    },
+    y: 30,
+    opacity: 0,
+    duration: 0.8,
+    ease: 'power3.out',
+  });
+
+  gsap.from('.our-values .section-title', {
+    scrollTrigger: {
+      trigger: '.our-values',
+      start: 'top 85%',
+      toggleActions: 'play none none reverse'
+    },
+    y: 40,
+    opacity: 0,
+    duration: 0.8,
+    delay: 0.1,
+    ease: 'power3.out',
+  });
+
+  gsap.from('.value-item', {
+    scrollTrigger: {
+      trigger: '.our-values',
+      start: 'top 80%',
+      toggleActions: 'play none none reverse'
+    },
+    y: 50,
+    opacity: 0,
+    duration: 0.8,
+    delay: 0.2,
+    stagger: 0.15,
+    ease: 'power3.out',
+  });
+
+  // Our Stats section animations
+  gsap.from('.stat-item', {
+    scrollTrigger: {
+      trigger: '.our-stats',
+      start: 'top 85%',
+      toggleActions: 'play none none reverse'
+    },
+    y: 40,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.1,
+    ease: 'power3.out',
   });
 
   // About footer animations with same effect as homepage contact title

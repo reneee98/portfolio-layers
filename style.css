@@ -2353,7 +2353,7 @@ body.about-page {
 }
 
 .stat-number {
-  font-size: 72px;
+  font-size: 6rem;
   font-weight: 900;
   color: var(--secondary-color);
   margin-bottom: 16px;
@@ -2826,12 +2826,11 @@ body.about-page {
   }
   
   .stats-grid {
-    grid-template-columns: 1fr;
     gap: 30px;
   }
   
   .stat-number {
-    font-size: 56px;
+    font-size: 5rem;
   }
 
   .about-footer {
