@@ -53,6 +53,47 @@ const initHeroAnimations = () => {
 };
 const initPortfolioAnimations = () => {};
 const initExpertiseAnimations = () => {};
+// === Works Page Animations ===
+const initWorksAnimations = () => {
+  // Check if we're on works page
+  if (!document.body.classList.contains('works-page')) return;
+
+  // Works header content animations
+  gsap.from('.works-title', {
+    y: 80,
+    opacity: 0,
+    duration: 1.2,
+    delay: 0.2,
+    ease: 'power3.out',
+  });
+
+  gsap.from('.works-subtitle', {
+    y: 40,
+    opacity: 0,
+    duration: 0.8,
+    delay: 0.4,
+    ease: 'power3.out',
+  });
+
+  // Simple scroll-triggered animations for portfolio cards
+  const portfolioCards = document.querySelectorAll('.portfolio-project');
+  
+  portfolioCards.forEach((card, index) => {
+    gsap.from(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse'
+      },
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      delay: index * 0.1,
+      ease: 'power3.out',
+    });
+  });
+};
+
 // === Portfolio Detail Page Animations ===
 const initPortfolioDetailAnimations = () => {
   // Check if we're on portfolio detail page
@@ -217,6 +258,11 @@ const initMobileMenu = () => {
     
     // Add menu-open class for portfolio page specifically
     if (document.body.classList.contains('portfolio-page')) {
+      document.body.classList.toggle('menu-open', isOpen);
+    }
+    
+    // Add menu-open class for works page specifically
+    if (document.body.classList.contains('works-page')) {
       document.body.classList.toggle('menu-open', isOpen);
     }
   };
@@ -594,6 +640,7 @@ document.addEventListener('DOMContentLoaded', () => {
       initContactAnimations();
     initGlobalEntranceAnimations();
     initPortfolioDetailAnimations();
+    initWorksAnimations();
     
     // Fix for the contact section title animation
   const contactTitle = document.getElementById('contactTitle');

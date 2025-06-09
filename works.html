@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Works - Layers Portfolio Projects" />
+  <meta name="theme-color" content="#000000" />
+  <title>Works - Layers</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<body class="works-page">
+
+  <header class="works-header">
+    <div class="top-bar">
+      <a href="index.html" class="logo" aria-label="Layers">
+        <img src="images/layers-logo.svg" alt="Layers logo" class="logo-img">
+      </a>
+
+      <nav class="nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="works.html">Works</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#about">About us</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="index.html#contact" class="contact-btn">
+        Contact me
+        <span class="material-symbols-outlined">arrow_outward</span>
+      </a>
+
+      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <!-- Works Page Title -->
+    <div class="works-content">
+      <h1 class="works-title">WORKS</h1>
+      <p class="works-subtitle">Our portfolio shows the quality, experience, and bold design thinking behind every project.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="portfolio works-portfolio" id="work">
+      <div class="container">
+        <div class="portfolio-grid">
+          <div class="portfolio-project">
+            <a href="portfolio-detail.html" class="portfolio-card">
+              <div class="card-image">
+                <img src="images/portfolio/eltekno.png" alt="Eltekno project" loading="lazy">
+              </div>
+            </a>
+            <div class="project-meta">
+              <div class="project-client">Eltekno</div>
+              <div class="project-desc">Web Design & Development</div>
+            </div>
+          </div>
+
+          <div class="portfolio-project">
+            <a href="portfolio-detail.html" class="portfolio-card">
+              <div class="card-image">
+                <img src="images/portfolio/smile-area.png" alt="Smile Area project" loading="lazy">
+              </div>
+            </a>
+            <div class="project-meta">
+              <div class="project-client">Smile Area</div>
+              <div class="project-desc">Brand Identity</div>
+            </div>
+          </div>
+
+          <div class="portfolio-project">
+            <div class="portfolio-card">
+              <div class="card-image">
+                <img src="images/portfolio/rintintin.png" alt="Rintintin project" loading="lazy">
+              </div>
+            </div>
+            <div class="project-meta">
+              <div class="project-client">Rintintin</div>
+              <div class="project-desc">Brand Identity & Packaging</div>
+            </div>
+          </div>
+
+          <div class="portfolio-project">
+            <div class="portfolio-card">
+              <div class="card-image">
+                <img src="images/portfolio/cafe.png" alt="Cafe project" loading="lazy">
+              </div>
+            </div>
+            <div class="project-meta">
+              <div class="project-client">Cafe Project</div>
+              <div class="project-desc">Branding & Web Design</div>
+            </div>
+          </div>
+
+          <div class="portfolio-project">
+            <div class="portfolio-card">
+              <div class="card-image">
+                <img src="images/portfolio/wepeak.png" alt="Wepeak project" loading="lazy">
+              </div>
+            </div>
+            <div class="project-meta">
+              <div class="project-client">Wepeak</div>
+              <div class="project-desc">Brand Identity</div>
+            </div>
+          </div>
+
+          <div class="portfolio-project">
+            <div class="portfolio-card">
+              <div class="card-image">
+                <img src="images/portfolio/nnwi.png" alt="NNWI project" loading="lazy">
+              </div>
+            </div>
+            <div class="project-meta">
+              <div class="project-client">NNWI</div>
+              <div class="project-desc">Web Development</div>
+            </div>
+          </div>
+
+          <!-- Additional Projects -->
+          <div class="portfolio-project">
+            <div class="portfolio-card">
+              <div class="card-image">
+                <img src="images/portfolio/eltekno.png" alt="Another project" loading="lazy">
+              </div>
+            </div>
+            <div class="project-meta">
+              <div class="project-client">Project 7</div>
+              <div class="project-desc">Brand Strategy</div>
+            </div>
+          </div>
+
+          <div class="portfolio-project">
+            <div class="portfolio-card">
+              <div class="card-image">
+                <img src="images/portfolio/smile-area.png" alt="Another project" loading="lazy">
+              </div>
+            </div>
+            <div class="project-meta">
+              <div class="project-client">Project 8</div>
+              <div class="project-desc">Digital Design</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="contact-title-wrapper">
+          <h2 class="contact-title" id="contactTitle">GET IN TOUCH</h2>
+        </div>
+        <div class="logo-footer">
+          <img src="images/layers-logo.svg" alt="Layers logo" class="logo-img">
+        </div>
+        <div class="contact-info">
+          <div>
+            <div class="contact-info-label">Our contact</div>
+            <a href="tel:+421944439749" class="contact-link">+421 944 439 749</a>
+            <a href="mailto:hello@layers.sk" class="contact-link">hello@layers.sk</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  
+  <!-- Our scripts -->
+  <script src="scripts.js"></script>
+
+</body>
+</html> 

@@ -1852,6 +1852,333 @@ body.portfolio-page {
   max-width: 100vw;
 }
 
+/* Works Page Styles */
+body.works-page {
+  background: #fff;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+/* Works Header */
+.works-header {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #fff;
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.works-header .top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: none;
+  margin: 0 auto;
+  padding: 40px 80px;
+  width: 100%;
+  position: relative;
+  z-index: 9999;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.works-header .logo img {
+  height: 40px;
+  width: auto;
+  display: block;
+  filter: brightness(0);
+}
+
+.works-header .nav a {
+  color: #111;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+  transition: color var(--transition-speed) var(--ease-out);
+  position: relative;
+}
+
+.works-header .nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #111;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.works-header .nav a:hover {
+  color: #666;
+}
+
+.works-header .nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.works-header .contact-btn {
+  margin-left: 48px;
+  padding: 16px 32px;
+  background: #111;
+  color: #fff;
+  border: 2px solid #111;
+  border-radius: 9999px;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all var(--transition-speed) var(--ease-out);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.works-header .contact-btn:hover {
+  background: transparent;
+  color: #111;
+  border-color: #111;
+}
+
+/* Works Content */
+.works-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 clamp(20px, 5vw, 80px);
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.works-title {
+  font-size: 120px;
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+  color: #111;
+  text-align: center;
+}
+
+.works-subtitle {
+  font-size: 24px;
+  color: #666;
+  line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.works-portfolio {
+  padding-top: 0;
+}
+
+@media (max-width: 1366px) {
+  .works-header .top-bar {
+    padding: 32px 60px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .works-title {
+    font-size: 80px;
+  }
+  
+  .works-subtitle {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .works-header .top-bar {
+    padding: 24px 60px;
+  }
+  
+  .works-header .nav ul {
+    gap: 32px;
+    padding-right: 8rem;
+  }
+  
+  .works-header .nav a {
+    font-size: 18px;
+  }
+  
+  .works-header .contact-btn {
+    padding: 14px 28px;
+    font-size: 16px;
+    margin-left: 32px;
+  }
+  
+  .works-title {
+    font-size: 64px;
+  }
+  
+  .works-subtitle {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .works-title {
+    font-size: 48px;
+  }
+  
+  .works-subtitle {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .works-header {
+    min-height: 30vh;
+  }
+  
+  .works-header .top-bar {
+    padding: 20px 16px;
+  }
+  
+  .works-header .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9998;
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    padding: 80px 20px;
+  }
+  
+  .works-header .nav.show {
+    transform: translateX(0);
+  }
+  
+  body.works-page.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .works-header .nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    opacity: 0;
+    transition: opacity 0.5s;
+    padding: 0;
+  }
+  
+  .works-header .nav.show ul {
+    opacity: 1;
+    transition-delay: 0.3s;
+  }
+  
+  .works-header .nav a {
+    font-size: 24px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s, transform 0.3s, color 0.3s;
+    color: #fff;
+  }
+  
+  .works-header .nav.show a {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .works-header .contact-btn {
+    display: none;
+  }
+  
+  .works-header .burger {
+    display: block;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    z-index: 9999;
+    padding: 0;
+  }
+  
+  .works-header .burger span {
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: #000;
+    position: absolute;
+    left: 5px;
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
+  }
+  
+  .works-header .burger span:nth-child(1) {
+    top: 12px;
+  }
+  
+  .works-header .burger span:nth-child(2) {
+    top: 19px;
+  }
+  
+  .works-header .burger span:nth-child(3) {
+    top: 26px;
+  }
+  
+  .works-header .burger.open span {
+    background: #fff;
+  }
+  
+  .works-header .burger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  
+  .works-header .burger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .works-header .burger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+  
+  .works-title {
+    font-size: 36px;
+  }
+  
+  .works-subtitle {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .works-title {
+    font-size: 28px;
+  }
+  
+  .works-subtitle {
+    font-size: 14px;
+  }
+}
+
 .portfolio-detail-header .portfolio-detail-grid {
   background: transparent;
   padding-top: 0px;
@@ -2504,6 +2831,24 @@ e/* Palette blocks */
   }
   
   .portfolio-detail-header .contact-btn {
+    font-size: 20px;
+    padding: 18px 36px;
+  }
+  
+  /* Works Page - Large Screens */
+  .works-title {
+    font-size: 160px;
+  }
+  
+  .works-subtitle {
+    font-size: 32px;
+  }
+  
+  .works-header .nav a {
+    font-size: 24px;
+  }
+  
+  .works-header .contact-btn {
     font-size: 20px;
     padding: 18px 36px;
   }
