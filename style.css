@@ -821,7 +821,7 @@ body {
 .container {
   max-width: 100%;
   margin: 0 auto;
-  margin-bottom: 6rem;
+  margin-bottom: 1rem;
   padding: 0 clamp(20px, 5vw, 80px);
 }
 
@@ -3621,6 +3621,20 @@ e/* Palette blocks */
   color: #111;
   letter-spacing: 0.08em;
   box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .tag {
+    font-size: 14px;
+    padding: 6px 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tag {
+    font-size: 12px;
+    padding: 5px 12px;
+  }
 }
 
 @media (max-width: 480px) {
