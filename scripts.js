@@ -174,6 +174,9 @@ const initAboutAnimations = () => {
 
 // === Portfolio Detail Page Animations ===
 const initPortfolioDetailAnimations = () => {
+  // Disable all animations on portfolio detail pages to prevent scroll interference
+  return;
+  
   // Check if we're on portfolio detail page
   if (!document.body.classList.contains('portfolio-page')) return;
 
@@ -320,6 +323,13 @@ const initPortfolioDetailAnimations = () => {
 
 // Mobile menu functionality
 const initMobileMenu = () => {
+  // Clean up any leftover menu-open class on page load
+  document.body.classList.remove('menu-open');
+  document.body.style.overflow = '';
+  document.body.style.position = '';
+  document.body.style.width = '';
+  document.body.style.height = '';
+  
   const burger = document.getElementById('burger');
   if (!burger) return; // Safety check
   
@@ -340,21 +350,16 @@ const initMobileMenu = () => {
     const isOpen = burger.classList.toggle('open');
     burger.setAttribute('aria-expanded', isOpen);
     nav.classList.toggle('show');
-    document.body.style.overflow = isOpen ? 'hidden' : '';
     
-    // Add menu-open class for portfolio page specifically
-    if (document.body.classList.contains('portfolio-page')) {
-      document.body.classList.toggle('menu-open', isOpen);
-    }
+    // Add/remove menu-open class for all pages
+    document.body.classList.toggle('menu-open', isOpen);
     
-    // Add menu-open class for works page specifically
-    if (document.body.classList.contains('works-page')) {
-      document.body.classList.toggle('menu-open', isOpen);
-    }
-    
-    // Add menu-open class for about page specifically
-    if (document.body.classList.contains('about-page')) {
-      document.body.classList.toggle('menu-open', isOpen);
+    // Fallback: explicitly set overflow style for safety
+    if (!isOpen) {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
     }
   };
 
@@ -394,11 +399,25 @@ const initMobileMenu = () => {
     if (window.innerWidth > 768 && nav.classList.contains('show')) {
       toggleMenu();
     }
+    
+    // Safety cleanup for desktop sizes
+    if (window.innerWidth > 768) {
+      document.body.classList.remove('menu-open');
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
+    }
   });
 };
 
-// Smooth scroll using GSAP
+// Smooth scroll using GSAP - disabled for portfolio detail pages
 const initSmoothScroll = () => {
+  // Disable smooth scroll on portfolio detail pages to prevent scroll issues
+  if (document.body.classList.contains('portfolio-page')) {
+    return;
+  }
+  
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
       e.preventDefault();

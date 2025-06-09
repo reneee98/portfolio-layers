@@ -823,6 +823,11 @@ body {
   margin: 0 auto;
   margin-bottom: 1rem;
   padding: 0 clamp(20px, 5vw, 80px);
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 @media (max-width: 768px) {
@@ -1929,9 +1934,21 @@ body {
 
 body.portfolio-page {
   background: #fff;
-  overflow-x: hidden;
   width: 100%;
   max-width: 100vw;
+  touch-action: pan-y !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+body.portfolio-page * {
+  -webkit-user-drag: none !important;
+  -khtml-user-drag: none !important;
+  -moz-user-drag: none !important;
+  -o-user-drag: none !important;
+  user-drag: none !important;
 }
 
 /* Works Page Styles */
@@ -2764,7 +2781,7 @@ body.about-page {
   }
   
   .about-title {
-    font-size: 36px;
+    font-size: 42px;
   }
   
   .about-subtitle {
@@ -2827,7 +2844,7 @@ body.about-page {
   }
   
   .about-title {
-    font-size: 28px;
+    font-size: 34px;
   }
   
   .about-subtitle {
@@ -3082,15 +3099,23 @@ body.about-page {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 8px;
   background: #fff;
   padding: 0 clamp(20px, 5vw, 80px);
-  overflow-x: hidden;
+  touch-action: pan-y !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
 }
 .visuals-row {
   display: flex;
   gap: 8px;
-  margin-bottom: 12px;
+  touch-action: pan-y !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
 }
 .visuals-row-1 { flex-wrap: wrap; }
 .visuals-row-2 { flex-wrap: wrap; }
@@ -3102,12 +3127,22 @@ body.about-page {
 .visuals-row-complex {
   display: flex;
   gap: 8px;
+  touch-action: pan-y !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
 }
 .visuals-left {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  touch-action: pan-y !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
 }
 .visuals-right {
   flex: 0.5;
@@ -3115,6 +3150,11 @@ body.about-page {
 .visuals-bottom-row {
   display: flex;
   gap: 8px;
+  touch-action: pan-y !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
 }
 .visuals-bottom-row .visuals-img {
   flex: 1;
@@ -3144,6 +3184,13 @@ body.about-page {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  -webkit-user-drag: none !important;
+  -khtml-user-drag: none !important;
+  -moz-user-drag: none !important;
+  -o-user-drag: none !important;
+  user-drag: none !important;
+  pointer-events: none !important;
+  touch-action: none !important;
 }
 .visuals-row-1 > .visuals-img { flex: 1 1 100%; }
 .visuals-row-2 > .visuals-img { 
@@ -3163,6 +3210,11 @@ body.about-page {
   display: flex;
   align-items: center;
   justify-content: center;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .visuals-img img,
 .visuals-img video {
@@ -3170,6 +3222,13 @@ body.about-page {
   height: auto;
   display: block;
   object-fit: cover;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
+  touch-action: none;
 }
 
 /* Prvé dva obrázky sa roztiahnu cez celý kontejner s pomerom strán */
@@ -3179,6 +3238,13 @@ body.about-page {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  -webkit-user-drag: none !important;
+  -khtml-user-drag: none !important;
+  -moz-user-drag: none !important;
+  -o-user-drag: none !important;
+  user-drag: none !important;
+  pointer-events: none !important;
+  touch-action: none !important;
 }
 
 /* Sekcia s jedným obrázkom - pomer strán 1117x643 */
@@ -3191,6 +3257,13 @@ body.about-page {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  -webkit-user-drag: none !important;
+  -khtml-user-drag: none !important;
+  -moz-user-drag: none !important;
+  -o-user-drag: none !important;
+  user-drag: none !important;
+  pointer-events: none !important;
+  touch-action: none !important;
 }
 
 /* Sekcia s troma obrázkami - pomer strán 367x585 */
@@ -3203,17 +3276,24 @@ body.about-page {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  -webkit-user-drag: none !important;
+  -khtml-user-drag: none !important;
+  -moz-user-drag: none !important;
+  -o-user-drag: none !important;
+  user-drag: none !important;
+  pointer-events: none !important;
+  touch-action: none !important;
 }
 
 /* Responzívnosť pre prvé dva obrázky */
 @media (max-width: 480px) {
   .visuals-row {
-    gap: 12px;
+    gap: 8px;
   }
   
   .visuals-row-2:first-of-type {
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
   }
   
   .visuals-row-4 {
@@ -3222,16 +3302,16 @@ body.about-page {
   
   .visuals-row-complex {
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
   }
   
   .visuals-left {
-    gap: 12px;
+    gap: 8px;
   }
   
   .visuals-bottom-row {
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
   }
 }
 e/* Palette blocks */
