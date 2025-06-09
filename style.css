@@ -1624,8 +1624,26 @@ body {
   position: relative;
 }
 
+.portfolio-detail-header .nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #111;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--ease-out);
+}
+
 .portfolio-detail-header .nav a:hover {
   color: #666;
+}
+
+.portfolio-detail-header .nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .portfolio-detail-header .contact-btn {
@@ -2209,7 +2227,7 @@ body.portfolio-page {
     gap: 12px;
   }
 }
-/* Palette blocks */
+e/* Palette blocks */
 .palette-row {
   gap: 24px;
 }
