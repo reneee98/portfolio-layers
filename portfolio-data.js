@@ -11,6 +11,14 @@ const portfolioProjects = [
     alt: 'Lienka Lenka creative personal brand and identity design'
   },
   {
+    id: 'restaurant70',
+    client: 'Restaurant 70',
+    description: 'Restaurant Branding & Interior Design',
+    image: 'images/portfolio/70-thumbnail.jpg',
+    link: 'portfolio-restaurant70.html',
+    alt: 'Restaurant 70 modern restaurant branding and interior design'
+  },
+  {
     id: 'elfitting',
     client: 'Elfitting',
     description: 'E-commerce Design & Development',
